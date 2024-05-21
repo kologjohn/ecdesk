@@ -72,7 +72,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
         double screenWidth = screenSize.width;
         double screenHeight = screenSize.height;
         double cw=(screenWidth)*0.47;
-        double scw=(screenWidth)*0.23;
+        double scw=(screenWidth)*0.235;
 
         if(screenWidth <800){
           cw = screenWidth;
