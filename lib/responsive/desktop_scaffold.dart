@@ -46,24 +46,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
   int totalmale=0;
   int totalfemale=0;
   List demoTilesd = [];
-  List colors=[
-    Colors.red,
-    Colors.blue,
-    Colors.green,
-    Colors.grey,
-    Colors.black,
-    Colors.amber,
-    Colors.lightBlue,
-    Colors.purpleAccent,
-    Colors.orangeAccent,
-    Colors.cyan,
-    Colors.deepOrange,
-    Colors.deepPurple,
-    Colors.purple,
-    Colors.deepOrangeAccent,
-    Colors.orange,
-    Colors.deepPurpleAccent,
-  ];
+  List colors=[Colors.red, Colors.blue, Colors.green, Colors.grey, Colors.black, Colors.amber, Colors.lightBlue, Colors.purpleAccent, Colors.orangeAccent, Colors.cyan, Colors.deepOrange, Colors.deepPurple, Colors.purple, Colors.deepOrangeAccent, Colors.orange, Colors.deepPurpleAccent,];
   @override
   Widget build(BuildContext context) {
     return  Consumer<FirebaseAccounts>(
@@ -79,15 +62,14 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
           scw = screenWidth;
         }
 
-
         else if(screenWidth >800 && screenWidth<880){
           scw = screenWidth*0.47;
         }
 
 
-        print(cw);
-        print(screenWidth);
-        print(screenWidth/cw);
+        // print(cw);
+        // print(screenWidth);
+        // print(screenWidth/cw);
         // if(!value.auth.isSignedIn)
         //   {
         //     return Scaffold(
@@ -421,7 +403,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                                 const Text("Female: "),
                                                                 Row(
                                                                   children: [
-                                                                    Text("${numformat.format(f)}", style: const TextStyle(fontSize: 12),),
+                                                                    Text(numformat.format(f), style: const TextStyle(fontSize: 12),),
                                                                     Text("~${numformat.format(femalere)}%", style:  TextStyle(fontSize: 12,color: Colors.cyan[800]),),
 
                                                                   ],
