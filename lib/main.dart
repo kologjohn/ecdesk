@@ -12,7 +12,6 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   FirebaseAuth.initialize('AIzaSyBSVeEDy4oZGkqTY7pYWvsJz6Cm-O1HPGo', VolatileStore());
   Firestore.initialize('ecdata-eb3b2');
-
   //await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   // if(kIsWeb){
   //   BrowserContextMenu.disableContextMenu();

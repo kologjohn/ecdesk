@@ -26,12 +26,36 @@ class FirebaseAccounts extends ChangeNotifier{
   bool recordexist=false;
   bool saved=false;
   String error="";
+  bool desktopshow=true;
+  bool idshow=false;
 
-  Future<List<Document>> ecdata()async{
-    List<Document> daata=await db.collection("agedis").get();
-    print(daata.length);
-    return daata;
+
+   seearchifo(String startseach){
+    if(startseach.length>0)
+      {
+        idshow=true;
+      }
+    else
+      {
+        idshow=false;
+      }
+    notifyListeners();
   }
+
+
+  desktoshow(String startseach){
+   bool returnbbool=false;
+   if(startseach.length>0)
+   {
+     desktopshow=false;
+   }
+   else
+   {
+     desktopshow=true;
+   }
+   print(returnbbool);
+   notifyListeners();
+ }
 
 
   login()async{
@@ -44,7 +68,7 @@ class FirebaseAccounts extends ChangeNotifier{
         {
           final ff=await auth.signIn("data@party.co","123456");
           if(auth.isSignedIn){
-           // print("Login successfully");
+            print("Login successfully");
     }
         }
     }catch(e){
@@ -78,6 +102,7 @@ class FirebaseAccounts extends ChangeNotifier{
           final Map parsed = json.decode(resdata);
           final  finaldata = parsed['result'];
           final a=jsonEncode(finaldata);
+          print(a);
           return AgereResponse.fromJson(jsonDecode(a));
         } else {
           throw Exception('Failed to load data');
@@ -122,6 +147,50 @@ class FirebaseAccounts extends ChangeNotifier{
            final a=jsonEncode(finaldata);
 
            return RegionalSummaryResponse.fromJson(jsonDecode(a));
+         } else {
+           // If the server did not return an OK response, throw an exception
+           throw Exception('Failed to load regional summary');
+         }}
+         else
+           {
+
+             error="authenticating...";
+             notifyListeners();
+             throw Exception('Error Loading data');
+
+           }
+
+ }
+   Future<SearchSummaryResponse> fetchSearch(String searchTxt) async {
+    await login();
+     if(auth.isSignedIn)
+       {
+         String? email = "";
+         //login();
+         final user = auth.getUser();
+         email ="";
+         String? token = await auth.tokenProvider.idToken;
+         var headers = {
+           'Content-Type': 'application/json',
+           'Authorization': 'Bearer $token',
+         };
+         var request = http.Request('POST', Uri.parse('https://us-central1-ecdata-eb3b2.cloudfunctions.net/search'));
+         request.body = json.encode({
+           "data": {
+             "q": searchTxt,
+           }
+         });
+         request.headers.addAll(headers);
+         http.StreamedResponse response = await request.send();
+         if (response.statusCode == 200) {
+           // If the server returns an OK response, parse the JSON
+           String resdata = await response.stream.bytesToString();
+           final Map parsed = json.decode(resdata);
+           final  finaldata = parsed['result'];
+           final a=jsonEncode(finaldata);
+           print(a);
+
+           return SearchSummaryResponse.fromJson(jsonDecode(a));
          } else {
            // If the server did not return an OK response, throw an exception
            throw Exception('Failed to load regional summary');

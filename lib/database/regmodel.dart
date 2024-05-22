@@ -43,6 +43,30 @@ class AgeSummary {
     );
   }
 }
+class SearchSummary {
+  final String id;
+  final String name;
+  final String constituency;
+  final String region;
+  final String pscode;
+  final String psname;
+  final String voterid;
+  final int age;
+
+  SearchSummary({required this.psname,required this.name,required this.constituency, required this.region, required this.pscode, required this.voterid, required this.age, required this.id} );
+  factory SearchSummary.fromJson(Map<String, dynamic> json) {
+    return SearchSummary(
+      id: json['id'],
+      name: json['name'],
+      constituency: json['constituency'],
+      region: json['region'],
+      pscode: json['pscode'],
+      psname: json['psname'],
+      voterid: json['voterid'],
+      age: json['age'],
+    );
+  }
+}
 
 
 
@@ -57,6 +81,16 @@ class RegionalSummaryResponse {
     return RegionalSummaryResponse(regionalSummary: regionalSummaryList);
   }
 }
+class SearchSummaryResponse {
+  final List<SearchSummary> searchSummary;
+  SearchSummaryResponse({required this.searchSummary});
+
+  factory SearchSummaryResponse.fromJson(Map<String, dynamic> json) {
+    var list = json['regionalSummary'] as List;
+    List<SearchSummary> regionalSummaryList = list.map((i) => SearchSummary.fromJson(i)).toList();
+    return SearchSummaryResponse(searchSummary: regionalSummaryList);
+  }
+}
 class AgereResponse {
   final List<AgeSummary> agesuSummary;
 
@@ -68,6 +102,7 @@ class AgereResponse {
     return AgereResponse(agesuSummary: regionalSummaryList);
   }
 }
+
 
 
 
