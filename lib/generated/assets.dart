@@ -6,6 +6,8 @@ class Assets {
   static const String assetsImagesNpp = 'assets/images/npp.png';
   static const String images0 = 'assets/images/0.png';
   static const String images1567500079 = 'assets/images/1567500079.png';
+  static const String imagesCoA = 'assets/images/CoA.png';
+  static const String imagesFlag = 'assets/images/flag.png';
   static const String imagesFloating = 'assets/images/floating.png';
   static const String imagesMap = 'assets/images/map.svg';
   static const String imagesNDCL = 'assets/images/NDC-L.png';
@@ -15,7 +17,12 @@ class Assets {
   static const String imagesNdc3 = 'assets/images/ndc3.png';
   static const String imagesNpp = 'assets/images/npp.jpg';
   static const String imagesOthers = 'assets/images/others.png';
+  static const String imagesPassport = 'assets/images/passport.png';
   static const String imagesProfile = 'assets/images/profile.jpg';
+  static const String imagesQRcode = 'assets/images/QRcode.png';
   static const String imagesTotal = 'assets/images/total.svg';
+  static const String svgsFemale = 'assets/svgs/female.svg';
+  static const String svgsMale = 'assets/svgs/male.svg';
+  static const String svgsMap = 'assets/svgs/map.svg';
 
 }

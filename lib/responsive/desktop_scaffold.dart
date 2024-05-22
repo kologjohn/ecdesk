@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:ecdesk/idcard.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -46,24 +47,11 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
   int totalmale=0;
   int totalfemale=0;
   List demoTilesd = [];
-  List colors=[
-    Colors.red,
-    Colors.blue,
-    Colors.green,
-    Colors.grey,
-    Colors.black,
-    Colors.amber,
-    Colors.lightBlue,
-    Colors.purpleAccent,
-    Colors.orangeAccent,
-    Colors.cyan,
-    Colors.deepOrange,
-    Colors.deepPurple,
-    Colors.purple,
-    Colors.deepOrangeAccent,
-    Colors.orange,
-    Colors.deepPurpleAccent,
-  ];
+  List colors=[Colors.red, Colors.blue, Colors.green, Colors.grey, Colors.black, Colors.amber, Colors.lightBlue, Colors.purpleAccent, Colors.orangeAccent, Colors.cyan, Colors.deepOrange, Colors.deepPurple, Colors.purple, Colors.deepOrangeAccent, Colors.orange, Colors.deepPurpleAccent,];
+
+  String? _selectedRegion;
+  List<String> _regions = ['Upper East', 'Upper West', 'North East', 'Ahafo', 'Bono', 'Northern', 'Oti'];
+
   @override
   Widget build(BuildContext context) {
     return  Consumer<FirebaseAccounts>(
@@ -79,15 +67,14 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
           scw = screenWidth;
         }
 
-
         else if(screenWidth >800 && screenWidth<880){
           scw = screenWidth*0.47;
         }
 
 
-        print(cw);
-        print(screenWidth);
-        print(screenWidth/cw);
+        // print(cw);
+        // print(screenWidth);
+        // print(screenWidth/cw);
         // if(!value.auth.isSignedIn)
         //   {
         //     return Scaffold(
@@ -110,13 +97,132 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
         return Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
+              toolbarHeight: 100,
               backgroundColor: Colors.green[900],
-              title:const Text("NATIONAL DEMOCRATIC CONGRESS - EC DATABASE",
-               style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20
-                ),
+              title: Row(
+                children: [
+                  Expanded(
+                      child: Container(
+                        child: Column(
+                          children: [
+                            Wrap(
+                              spacing: 5,
+                              runSpacing: 5,
+                              children: [
+                                FittedBox(
+                                  fit: BoxFit.contain,
+                                  child: Container(
+                                    width: cw,
+                                    child: const Expanded(
+                                        child: Text("NATIONAL DEMOCRATIC CONGRESS - EC DATABASE",
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20
+                                          ),
+                                        )
+                                    ),
+                                  ),
+                                ),
+                                FittedBox(
+                                  fit: BoxFit.contain,
+                                  child: Container(
+                                    width: cw,
+                                    child: Expanded(
+                                        child: Row(
+                                          children: [
+                                            // Expanded(
+                                            //   child: Container(
+                                            //       //height: 50,
+                                            //       //width: 300,
+                                            //       //color: Colors.white54,
+                                            //     decoration: const BoxDecoration(
+                                            //         border: Border(
+                                            //           top: BorderSide(color: Colors.white),
+                                            //           bottom: BorderSide(color: Colors.white),
+                                            //           left: BorderSide(color: Colors.white),
+                                            //           right: BorderSide(color: Colors.white),
+                                            //         )
+                                            //     ),
+                                            //       child: Padding(
+                                            //         padding: const EdgeInsets.only(left: 8.0),
+                                            //         child: Row(
+                                            //           children: [
+                                            //             DropdownButton<String>(
+                                            //               hint: const Text(
+                                            //                   'Select Region',
+                                            //                 style: TextStyle(
+                                            //                   color: Colors.white
+                                            //                 ),
+                                            //               ),
+                                            //               value: _selectedRegion,
+                                            //               onChanged: (String? newValue) {
+                                            //                 setState(() {
+                                            //                   _selectedRegion = newValue;
+                                            //                 });
+                                            //               },
+                                            //               items: _regions.map<DropdownMenuItem<String>>((String value) {
+                                            //                 return DropdownMenuItem<String>(
+                                            //                   value: value,
+                                            //                   child: Text(value),
+                                            //                 );
+                                            //               }).toList(),
+                                            //             ),
+                                            //           ],
+                                            //         ),
+                                            //       )
+                                            //   ),
+                                            // ),
+                                            // const SizedBox(width: 8),
+                                            Expanded(
+                                              //flex: 3,
+                                              child: Container(
+                                                //height: 50,
+                                                //width: 300,
+                                                decoration: const BoxDecoration(
+                                                    //color: Colors.orange,
+                                                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                                                  border: Border(
+                                                    top: BorderSide(color: Colors.white),
+                                                    bottom: BorderSide(color: Colors.white),
+                                                    left: BorderSide(color: Colors.white),
+                                                    right: BorderSide(color: Colors.white),
+                                                  )
+                                                ),
+                                                child: const Column(
+                                                  children: [
+                                                    Padding(
+                                                      padding: EdgeInsets.only(left: 8.0),
+                                                      child: Center(
+                                                        child: TextField(
+                                                          decoration: InputDecoration(
+                                                              hintText: 'Search...',
+                                                              hintStyle: TextStyle(color: Colors.white54, fontSize: 12),
+                                                              prefixIcon: Icon(Icons.search),
+                                                              prefixIconColor: Colors.white,
+                                                              fillColor: Colors.blue,
+                                                              filled: false,
+                                                              border: InputBorder.none,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      )
+                  )
+                ],
               ),
 
             ),
@@ -129,7 +235,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                   Expanded(
                       child: SingleChildScrollView(
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -228,7 +334,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                       );
                                                     } else {
                                                       print("has data");
-                                                      return Center(child: Text('No data available'));
+                                                      return const Center(child: Text('No data available'));
                                                     }
                                                   },
                                                 ),
@@ -238,7 +344,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                     int xx=0;
                                                     List<int> dd=[];
                                                     if (snapshot.connectionState == ConnectionState.waiting) {
-                                                      return Center(child: CircularProgressIndicator());
+                                                      return const Center(child: CircularProgressIndicator());
                                                     } else if (snapshot.hasError) {
                                                       return Center(child: Text('Error: ${snapshot.error}'));
                                                     } else if (snapshot.hasData) {
@@ -374,6 +480,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Container(
+                                width: screenWidth*0.95,
                                 decoration: BoxDecoration(
                                   borderRadius: const BorderRadius.all(Radius.circular(8)),
                                   color: Colors.green[900]?.withOpacity(0.2),
@@ -421,7 +528,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                                 const Text("Female: "),
                                                                 Row(
                                                                   children: [
-                                                                    Text("${numformat.format(f)}", style: const TextStyle(fontSize: 12),),
+                                                                    Text(numformat.format(f), style: const TextStyle(fontSize: 12),),
                                                                     Text("~${numformat.format(femalere)}%", style:  TextStyle(fontSize: 12,color: Colors.cyan[800]),),
 
                                                                   ],
@@ -881,6 +988,57 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                       color: Colors.green[900]?.withOpacity(0.2),
                                                       borderRadius: const BorderRadius.all(Radius.circular(8))
                                                   ),
+                                                  child: Column(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                                    children: [
+                                                      Row(
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        children: [
+                                                          Container(
+                                                            height: 40,
+                                                            width: 40,
+                                                            decoration: BoxDecoration(
+                                                              shape: BoxShape.circle,
+                                                              color: Colors.blue[900],
+                                                            ),
+                                                          ),
+                                                          const SizedBox(width: 30),
+                                                          const Column(
+                                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                                            children: [
+                                                              Text("EC Sex Errors Statistics"),
+                                                              Text("12,890"),
+                                                              Text("23%"),
+                                                            ],
+                                                          )
+                                                        ],
+                                                      ),
+                                                      const SizedBox(height: 20),
+                                                      Row(
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        children: [
+                                                          Container(
+                                                            height: 40,
+                                                            width: 40,
+                                                            decoration: BoxDecoration(
+                                                              shape: BoxShape.circle,
+                                                              color: Colors.green[900],
+                                                            ),
+                                                          ),
+                                                          const SizedBox(width: 30),
+                                                          const Column(
+                                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                                            children: [
+                                                              Text("EC Age Errors Statistics"),
+                                                              Text("12,890"),
+                                                              Text("23%"),
+                                                            ],
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
                                               ],
                                             )
@@ -1058,6 +1216,29 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                 ],
                               ),
                             ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                      child: Container(
+                                        child: Column(
+                                          children: [
+                                            Wrap(
+                                              spacing: 5,
+                                              runSpacing: 5,
+                                              children: [
+                                                for(int i=0; i<10; i++)
+                                                Contents(),
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                      )
+                                  )
+                                ],
+                              ),
+                            )
                           ],
                         ),
                       )

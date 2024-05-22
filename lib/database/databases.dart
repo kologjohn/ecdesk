@@ -27,6 +27,12 @@ class FirebaseAccounts extends ChangeNotifier{
   bool saved=false;
   String error="";
 
+  Future<List<Document>> ecdata()async{
+    List<Document> daata=await db.collection("agedis").get();
+    print(daata.length);
+    return daata;
+  }
+
 
   login()async{
     try{
@@ -38,7 +44,7 @@ class FirebaseAccounts extends ChangeNotifier{
         {
           final ff=await auth.signIn("data@party.co","123456");
           if(auth.isSignedIn){
-            print("Login successfully");
+           // print("Login successfully");
     }
         }
     }catch(e){
