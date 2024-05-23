@@ -39,7 +39,7 @@ class totalvoter extends StatelessWidget {
                     height: 30,
                     width: 30,
                     decoration: BoxDecoration(
-                      borderRadius:  BorderRadius.all(Radius.circular(8)),
+                      borderRadius:  const BorderRadius.all(Radius.circular(8)),
                       color: mycolors,
                     ),
                     child: Center(
@@ -59,8 +59,8 @@ class totalvoter extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(numformat1.format(int.parse(totals)), style: TextStyle(fontSize: 16),),
-                   Text("${totalper}%", style: TextStyle(fontSize: 16),),
+                  Text(numformat1.format(int.parse(totals)), style: const TextStyle(fontSize: 16),),
+                   Text("${totalper}%", style: const TextStyle(fontSize: 16),),
                 ],
               )
             ],

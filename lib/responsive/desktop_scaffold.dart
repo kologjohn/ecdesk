@@ -1,6 +1,8 @@
 import 'dart:ui';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecdesk/idcard.dart';
+import 'package:ecdesk/widgets/cons_card.dart';
+import 'package:ecdesk/widgets/error_page.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +43,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
   late List<double> maleline=[];
   late List<double> femaleline=[];
   List<BarChartGroupData> bardata=[];
-  List<String> names=[];
+  List<Widget> names=[];
   final searchcontroller=TextEditingController();
 
   int itemcount=0;
@@ -176,6 +178,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                   child: Container(
                                                     width: scw*0.9,
                                                     child:  TextField(
+                                                      style: TextStyle(color:Colors.white),
                                                       controller: searchcontroller,
                                                       onChanged: (text){
                                                         value.desktoshow(text);
@@ -242,7 +245,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                       FutureBuilder<RegionalSummaryResponse>(
                                                         future: value.fetchRegionalSummary(),
                                                         builder: (context, snapshot) {
-                              
+
                                                           if (snapshot.connectionState == ConnectionState.waiting) {
                                                             return const Center(child: CircularProgressIndicator());
                                                           } else if (snapshot.hasError) {
@@ -266,7 +269,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                               int mytotal=summary.totalVoters;
                                                               int male=summary.male;
                                                               int female=summary.female;
-                              
+
                                                               totalmale+=male;
                                                               totalfemale+=female;
                                                               final per=numformat.format((mytotal/totalvoters)*(100));
@@ -328,6 +331,42 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                           }
                                                         },
                                                       ),
+                                                      // Container(
+                                                      //   height: 370,
+                                                      //   width: cw,
+                                                      //   decoration: BoxDecoration(
+                                                      //       color: Colors.green[900]?.withOpacity(0.2),
+                                                      //       borderRadius: const BorderRadius.all(Radius.circular(8))
+                                                      //   ),
+                                                      //   child: SingleChildScrollView(
+                                                      //       scrollDirection: Axis.vertical,
+                                                      //     child: Column(
+                                                      //       children: [
+                                                      //         Text("Contituency Summary"),
+                                                      //         Padding(
+                                                      //           padding: EdgeInsets.all(8.0),
+                                                      //           child: Row(
+                                                      //             children: [
+                                                      //               Expanded(
+                                                      //                 //flex: 2,
+                                                      //                 child: Center(
+                                                      //                   child: Wrap(
+                                                      //                     spacing: 5,
+                                                      //                     runSpacing: 5,
+                                                      //                     children: [
+                                                      //                       for(int i=0; i<16; i++)
+                                                      //                       ConstituencyCard(),
+                                                      //                     ],
+                                                      //                   ),
+                                                      //                 ),
+                                                      //               )
+                                                      //             ],
+                                                      //           ),
+                                                      //         )
+                                                      //       ],
+                                                      //     ),
+                                                      //   ),
+                                                      // ),
                                                       FutureBuilder<AgereResponse>(
                                                         future: value.fetchAgeGroupData(),
                                                         builder: (context, snapshot) {
@@ -338,7 +377,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                           } else if (snapshot.hasError) {
                                                             return Center(child: Text('Error: ${snapshot.error}'));
                                                           } else if (snapshot.hasData) {
-                              
+
                                                             int datalength=snapshot.data!.agesuSummary.length;
                                                             bardata.clear();
                                                             for (int i=0; i<datalength; i++){
@@ -356,7 +395,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                               );
                                                             }
                                                             int maxNumber = dd.reduce((a, b) => a > b ? a : b);
-                              
+
                                                             return Container(
                                                               height: 370,
                                                               width: cw,
@@ -450,7 +489,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                                 ],
                                                               ),
                                                             );
-                              
+
                                                           } else {
                                                             //print("has data");
                                                             return const Center(child: Text('No data available'));
@@ -566,7 +605,6 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                       ),
                                     ),
                                   ),
-                              
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Row(
@@ -1209,7 +1247,6 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                 ],
                               ),
                             ),
-
                             Visibility(
                               visible: value.idshow,
                               child: Padding(
@@ -1226,10 +1263,42 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                               names.clear();
                                               for (int i=0; i<datalength; i++){
                                                 final summary = snapshot.data!.searchSummary[i];
-                                                 names.add(summary.name);
-                                                 print(summary);
-
+                                                String _name=summary.name;
+                                                String _voterid=summary.voterid;
+                                                String _sex=summary.sex;
+                                                String _pscode=summary.pscode;
+                                                int _age=summary.age;
+                                                 names.add(Contents(name: summary.name, age: _age, voterid: _voterid, pscode: _pscode, sex: _sex,));
                                               }
+                                              if (names.length ==0)
+                                              {
+                                                names.add(Container(
+                                                  child: Column(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: <Widget>[
+                                                      Icon(
+                                                        Icons.error_outline,
+                                                        color: Colors.red,
+                                                        size: 100,
+                                                      ),
+                                                      SizedBox(height: 16),
+                                                      Text(
+                                                        '404 - Search Not Found',
+                                                        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                                                      ),
+                                                      SizedBox(height: 16),
+                                                      Text(
+                                                        'Your search does not exist.',
+                                                        textAlign: TextAlign.center,
+                                                        style: TextStyle(fontSize: 16),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ));
+                                              }
+                                            }
+                                            else if(snapshot.hasError){
+                                              print(snapshot.error);
                                             }
                                             else
                                               {
@@ -1241,10 +1310,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                   Wrap(
                                                     spacing: 5,
                                                     runSpacing: 5,
-                                                    children: [
-                                                      for(int i=names.length; i<names.length; i++)
-                                                        Contents(name: names[i],),
-                                                    ],
+                                                    children: names
                                                   )
                                                 ],
                                               ),

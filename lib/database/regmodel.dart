@@ -44,16 +44,17 @@ class AgeSummary {
   }
 }
 class SearchSummary {
-  final String id;
+  final int id;
   final String name;
   final String constituency;
   final String region;
   final String pscode;
   final String psname;
   final String voterid;
+  final String sex;
   final int age;
 
-  SearchSummary({required this.psname,required this.name,required this.constituency, required this.region, required this.pscode, required this.voterid, required this.age, required this.id} );
+  SearchSummary({required this.sex,required this.psname,required this.name,required this.constituency, required this.region, required this.pscode, required this.voterid, required this.age, required this.id} );
   factory SearchSummary.fromJson(Map<String, dynamic> json) {
     return SearchSummary(
       id: json['id'],
@@ -64,6 +65,7 @@ class SearchSummary {
       psname: json['psname'],
       voterid: json['voterid'],
       age: json['age'],
+      sex: json['sex'],
     );
   }
 }
