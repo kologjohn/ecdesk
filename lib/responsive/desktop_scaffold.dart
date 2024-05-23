@@ -1300,6 +1300,9 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                             else if(snapshot.hasError){
                                               print(snapshot.error);
                                             }
+                                            else if(snapshot.hasError){
+                                              print(snapshot.error);
+                                            }
                                             else
                                               {
                                                 print("No Data");

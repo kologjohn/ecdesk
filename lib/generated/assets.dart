@@ -9,12 +9,19 @@ class Assets {
   static const String imagesCoA = 'assets/images/CoA.png';
   static const String imagesFlag = 'assets/images/flag.png';
   static const String imagesFloating = 'assets/images/floating.png';
+  static const String imagesMAHAMA = 'assets/images/MAHAMA.jpg';
+  static const String imagesMahama1 = 'assets/images/Mahama1.jpg';
+  static const String imagesMale = 'assets/images/male.png';
   static const String imagesMap = 'assets/images/map.svg';
   static const String imagesNDCL = 'assets/images/NDC-L.png';
   static const String imagesNdc = 'assets/images/ndc.jpg';
   static const String imagesNdc1 = 'assets/images/ndc1.png';
   static const String imagesNdc2 = 'assets/images/ndc2.png';
   static const String imagesNdc3 = 'assets/images/ndc3.png';
+  static const String imagesNdcSupporters = 'assets/images/ndc-supporters.jpg';
+  static const String imagesNdcbg = 'assets/images/ndcbg.jpg';
+  static const String imagesNdcbg2 = 'assets/images/ndcbg2.jpeg';
+  static const String imagesNdcbg3 = 'assets/images/ndcbg3.jpg';
   static const String imagesNpp = 'assets/images/npp.jpg';
   static const String imagesOthers = 'assets/images/others.png';
   static const String imagesPassport = 'assets/images/passport.png';
@@ -24,5 +31,6 @@ class Assets {
   static const String svgsFemale = 'assets/svgs/female.svg';
   static const String svgsMale = 'assets/svgs/male.svg';
   static const String svgsMap = 'assets/svgs/map.svg';
+  static const String svgsProfile = 'assets/svgs/profile.svg';
 
 }
