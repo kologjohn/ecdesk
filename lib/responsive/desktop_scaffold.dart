@@ -41,7 +41,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
   late List<double> maleline=[];
   late List<double> femaleline=[];
   List<BarChartGroupData> bardata=[];
-  List<String> names=[];
+  List<Widget> names=[];
   final searchcontroller=TextEditingController();
 
   int itemcount=0;
@@ -176,6 +176,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                   child: Container(
                                                     width: scw*0.9,
                                                     child:  TextField(
+                                                      style: TextStyle(color:Colors.white),
                                                       controller: searchcontroller,
                                                       onChanged: (text){
                                                         value.desktoshow(text);
@@ -242,7 +243,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                       FutureBuilder<RegionalSummaryResponse>(
                                                         future: value.fetchRegionalSummary(),
                                                         builder: (context, snapshot) {
-                              
+
                                                           if (snapshot.connectionState == ConnectionState.waiting) {
                                                             return const Center(child: CircularProgressIndicator());
                                                           } else if (snapshot.hasError) {
@@ -266,7 +267,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                               int mytotal=summary.totalVoters;
                                                               int male=summary.male;
                                                               int female=summary.female;
-                              
+
                                                               totalmale+=male;
                                                               totalfemale+=female;
                                                               final per=numformat.format((mytotal/totalvoters)*(100));
@@ -1226,10 +1227,16 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                               names.clear();
                                               for (int i=0; i<datalength; i++){
                                                 final summary = snapshot.data!.searchSummary[i];
-                                                 names.add(summary.name);
-                                                 print(summary);
-
+                                                String _name=summary.name;
+                                                String _voterid=summary.voterid;
+                                                String _sex=summary.sex;
+                                                String _pscode=summary.pscode;
+                                                int _age=summary.age;
+                                                 names.add(Contents(name: summary.name, age: _age, voterid: _voterid, pscode: _pscode, sex: _sex,));
                                               }
+                                            }
+                                            else if(snapshot.hasError){
+                                              print(snapshot.error);
                                             }
                                             else
                                               {
@@ -1241,10 +1248,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                   Wrap(
                                                     spacing: 5,
                                                     runSpacing: 5,
-                                                    children: [
-                                                      for(int i=names.length; i<names.length; i++)
-                                                        Contents(name: names[i],),
-                                                    ],
+                                                    children: names
                                                   )
                                                 ],
                                               ),

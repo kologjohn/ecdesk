@@ -2,33 +2,40 @@ import 'package:flutter/material.dart';
 
 class Contents extends StatelessWidget {
 final String name;
-  const Contents({super.key, required this.name, });
+final int age;
+final String voterid;
+final String pscode;
+final String sex;
+  const Contents({super.key, required this.name, required this.age, required this.voterid, required this.pscode, required this.sex, });
 
   @override
   Widget build(BuildContext context, ) {
+    List<String> splitname=name.split(" ");
+    String surname=splitname[0];
+    String othername=name.replaceAll(surname, "");
     return Column(
       children: [
         Content().content(
             'assets/images/CoA.png',
             'assets/images/flag.png',
-            'assets/images/passport.png',
+            'assets/images/male.png',
             'assets/images/QRcode.png',
             'ELECTORAL COMMISSION OF GHANA ',
             'VOTER CARD',
             'Surname',
-            'KOLOG',
+            '$surname',
             'OtherNames',
-            'WRIGHT NAYA',
+            '$othername',
             'Sex',
             'MALE',
-            'Date of Birth',
-            '1998/02/07',
+            'Reg. Age',
+            '$age',
             'Polling Station Code',
-            'R091302',
+            '$pscode',
             'date of Registration',
-            '2020/07/25',
+            'dd/mm/YYYY',
             'Voter Identification Number',
-            '7283008255',
+            '$voterid',
         )
       ],
     );
