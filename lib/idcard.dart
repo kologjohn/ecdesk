@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class Contents extends StatelessWidget {
 final String name;
@@ -6,58 +8,24 @@ final int age;
 final String voterid;
 final String pscode;
 final String sex;
-  const Contents({super.key, required this.name, required this.age, required this.voterid, required this.pscode, required this.sex, });
+final String image;
+final String constituency;
+final String region;
+final String psname;
+  const Contents({super.key, required this.name, required this.age, required this.voterid, required this.pscode, required this.sex, required this.image, required this.constituency, required this.region, required this.psname, });
 
   @override
   Widget build(BuildContext context, ) {
     List<String> splitname=name.split(" ");
     String surname=splitname[0];
     String othername=name.replaceAll(surname, "");
-    return Column(
-      children: [
-        Content().content(
-            'assets/images/CoA.png',
-            'assets/images/flag.png',
-            'assets/images/male.png',
-            'assets/images/QRcode.png',
-            'ELECTORAL COMMISSION OF GHANA ',
-            'VOTER CARD',
-            'Surname',
-            '$surname',
-            'OtherNames',
-            '$othername',
-            'Sex',
-            'MALE',
-            'Reg. Age',
-            '$age',
-            'Polling Station Code',
-            '$pscode',
-            'date of Registration',
-            'dd/mm/YYYY',
-            'Voter Identification Number',
-            '$voterid',
-        )
-      ],
-    );
-  }
-}
-class Content {
-  content(
-      String img1, String img2, String img3,String img4,
-      String text1, String text2, String text3,
-      String text4, String text5, String text6,
-      String text7, String text8, String text9,
-      String text10, String text11, String text12,
-      String text13, String text14, String text15,String text16,
-
-      ){
     return ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: 500),
       child: FittedBox(
         fit: BoxFit.contain,
         child: Container(
           decoration:  BoxDecoration(
-            gradient: LinearGradient(colors: [Colors.cyan.shade100, Colors.white])
+              gradient: LinearGradient(colors: [Colors.cyan.shade100, Colors.grey.shade200])
           ),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -66,28 +34,43 @@ class Content {
                 Row(
                   //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Image.asset(img1, width: 50,),
+                    Image.asset("assets/images/CoA.png", width: 50,),
                     const SizedBox(width: 10),
-                    Text(text1),
+                    Text("ELECTORAL COMMISSION OF GHANA", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),),
                     const SizedBox(width: 10),
-                    Image.asset(img2, width: 50,)
+                    Image.asset("assets/images/flag.png", width: 50,)
                   ],
                 ),
-                const SizedBox(height: 5),
-                Text(text2, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                Text("VOTER CARD", style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Container(
-                      decoration:  BoxDecoration(
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                            image: AssetImage(img3)
-                        )
-                      ),
-                      height: 150,
+                      height: 160,
                       width: 120,
+                      child: CachedNetworkImage(
+                        imageUrl: image,
+                        fit: BoxFit.cover,
+                        placeholder: (context, url) => Center(
+                          child: SizedBox(
+                            height: 50,
+                              width: 50,
+                              child: CircularProgressIndicator()
+                          ),
+                        ),
+                        errorWidget: (context, url, error) => Image.asset("assets/images/male.png"),
+                      ),
                     ),
+                    // Container(
+                    //   decoration:  BoxDecoration(
+                    //     image: DecorationImage(
+                    //       fit: BoxFit.cover,
+                    //         image: AssetImage(img3)
+                    //     )
+                    //   ),
+                    //   height: 150,
+                    //   width: 120,
+                    // ),
 
                     const SizedBox(width: 10),
 
@@ -99,10 +82,10 @@ class Content {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(text3, style: const TextStyle(fontSize: 10,),),
-                                Text(text4, style: const TextStyle(fontWeight: FontWeight.bold),),
-                                Text(text5, style: const TextStyle(fontSize: 10,),),
-                                Text(text6, style: const TextStyle(fontWeight: FontWeight.bold),),
+                                Text("Surname", style: const TextStyle(fontSize: 10,),),
+                                Text("$surname", style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.black),),
+                                Text("Other Names", style: const TextStyle(fontSize: 10,),),
+                                Text("$othername", style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.black),),
 
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -115,35 +98,36 @@ class Content {
                                             Column(
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
-                                                Text(text7, style: const TextStyle(fontSize: 10,),),
-                                                Text(text8, style: const TextStyle(fontWeight: FontWeight.bold),),
+                                                Text("Sex", style: const TextStyle(fontSize: 10,),),
+                                                Text("$sex", style: const TextStyle(fontWeight: FontWeight.bold),),
                                               ],
                                             ),
                                             const SizedBox(width: 120),
                                             Column(
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
-                                                Text(text9, style: const TextStyle(fontSize: 10,),),
-                                                Text(text10, style: const TextStyle(fontWeight: FontWeight.bold),),
+                                                Text("Reg. Age", style: const TextStyle(fontSize: 10,),),
+                                                Text("$age", style: const TextStyle(fontWeight: FontWeight.bold),),
                                               ],
                                             ),
                                           ],
                                         ),
                                         Row(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             Column(
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
-                                                Text(text11, style: const TextStyle(fontSize: 10,),),
-                                                Text(text12, style: const TextStyle(fontWeight: FontWeight.bold),),
+                                                const Text("Polling Station Code", style: TextStyle(fontSize: 10,),),
+                                                Text("$pscode", style: const TextStyle(fontWeight: FontWeight.bold),),
                                               ],
                                             ),
                                             const SizedBox(width: 60),
-                                            Column(
+                                            const Column(
                                               mainAxisAlignment: MainAxisAlignment.start,
                                               children: [
-                                                Text(text13, style: const TextStyle(fontSize: 10,),),
-                                                Text(text14, style: const TextStyle(fontWeight: FontWeight.bold),),
+                                                Text("Date Of Registration", style: TextStyle(fontSize: 10,),),
+                                                Text("2020/07/25", style: TextStyle(fontWeight: FontWeight.bold),),
                                               ],
                                             ),
                                           ],
@@ -151,7 +135,12 @@ class Content {
                                       ],
                                     ),
                                     const SizedBox(width: 20),
-                                    Image.asset(img4, width: 50,)
+                                    QrImageView(
+                                      data: '$name | $age | $psname | $region | $constituency',
+                                      version: QrVersions.auto,
+                                      size: 80.0,
+                                    ),
+                                    // Image.asset("assets/images/QRcode.png", width: 50,)
                                   ],
                                 ),
 
@@ -162,8 +151,8 @@ class Content {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(text15, style: const TextStyle(fontSize: 10,),),
-                            Text(text16, style: const TextStyle(fontWeight: FontWeight.bold),),
+                            Text("Voter Identification Number", style: const TextStyle(fontSize: 10,),),
+                            Text("$voterid", style: const TextStyle(fontWeight: FontWeight.bold),),
                           ],
                         )
                       ],
@@ -176,5 +165,6 @@ class Content {
         ),
       ),
     );
+
   }
 }

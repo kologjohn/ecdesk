@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecdesk/idcard.dart';
+import 'package:ecdesk/route/routes.dart';
 import 'package:ecdesk/widgets/cons_card.dart';
 import 'package:ecdesk/widgets/error_page.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -20,6 +21,8 @@ import 'package:ecdesk/widgets/tile_info.dart';
 
 import '../database/regmodel.dart';
 import '../widgets/box_card.dart';
+import '../widgets/qrcode_scanner.dart';
+import '../widgets/sidebar_items.dart';
 import '../widgets/totalvoterscard.dart';
 import '../widgets/wrap_items.dart';
 
@@ -56,6 +59,15 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
   String? _selectedRegion;
   List<String> _regions = ['Upper East', 'Upper West', 'North East', 'Ahafo', 'Bono', 'Northern', 'Oti'];
 
+
+  bool isSidebarExpanded = true;
+
+  void toggleSidebar() {
+    setState(() {
+      isSidebarExpanded = !isSidebarExpanded;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return  Consumer<FirebaseAccounts>(
@@ -63,7 +75,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
         Size screenSize = MediaQuery.of(context).size;
         double screenWidth = screenSize.width;
         double screenHeight = screenSize.height;
-        double cw=(screenWidth)*0.47;
+        double cw=(screenWidth)*0.438;
         double scw=(screenWidth)*0.235;
 
         if(screenWidth <800){
@@ -109,7 +121,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                 child: Container(
                                   width: cw,
                                   child: Row(
-                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
                                       // Expanded(
@@ -201,6 +213,15 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                           ],
                                         ),
                                       ),
+                                      InkWell(
+                                        onTap: (){
+                                          print("object");
+                                          Navigator.pushNamed(context, Routes.qrcode);
+                                        },
+                                          child: Icon(
+                                      Icons.qr_code_2, color: Colors.white,
+                                          )
+                                      )
                                     ],
                                   ),
                                 ),
@@ -216,10 +237,50 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
 
             ),
             body:  Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.only(right: 8.0, bottom: 8.0, top: 8.0),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  AnimatedContainer(
+                    duration: Duration(milliseconds: 300),
+                    width: isSidebarExpanded ? 200 : 70,
+                    color: Colors.green[900],
+                    child: Column(
+                      children: <Widget>[
+                        IconButton(
+                          icon: Icon(
+                            isSidebarExpanded ? Icons.arrow_back : Icons.arrow_forward,
+                            color: Colors.white,
+                          ),
+                          onPressed: toggleSidebar,
+                        ),
+                        Expanded(
+                          child: ListView(
+                            children: <Widget>[
+                              SidebarItem(
+                                icon: Icons.home,
+                                text: 'Home',
+                                isExpanded: isSidebarExpanded,
+                                onTap: () {  },
+                              ),
+                              SidebarItem(
+                                icon: Icons.person,
+                                text: 'Profile',
+                                isExpanded: isSidebarExpanded,
+                                onTap: () {  },
+                              ),
+                              SidebarItem(
+                                icon: Icons.settings,
+                                text: 'Settings',
+                                isExpanded: isSidebarExpanded,
+                                onTap: () {  },
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                   //const DemoDrawer(),
                   Expanded(
                       child: SingleChildScrollView(
@@ -278,7 +339,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                               // totals.add(total);
                                                               carddata.add(totalvoter(mycolors: colors[i], regionalcode: code, numformat1: numformat1, totals: total, totalper: "$per", regionName: regionnames,),);
                                                             }
-                              
+
                                                             return  Container(
                                                               height: 370,
                                                               width: cw,
@@ -496,7 +557,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                           }
                                                         },
                                                       ),
-                              
+
                                                     ],
                                                   )
                                                 ],
@@ -531,7 +592,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                 int t= item.male+item.female;
                                                 double malere=(m/t)*100;
                                                 double femalere=(f/t)*100;
-                              
+
                                                 String constituency= item.region;
                                                 consdata.add(
                                                     Wrap(
@@ -559,10 +620,10 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                                         children: [
                                                                           Text(numformat.format(f), style: const TextStyle(fontSize: 12),),
                                                                           Text("~${numformat.format(femalere)}%", style:  TextStyle(fontSize: 12,color: Colors.cyan[800]),),
-                              
+
                                                                         ],
                                                                       ),
-                              
+
                                                                       // Text("${f}~${numformat.format(femalere)}%", style: const TextStyle(fontSize: 12),),
                                                                     ],
                                                                   ),
@@ -574,10 +635,10 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                                         children: [
                                                                           Text("${m}", style: const TextStyle(fontSize: 12),),
                                                                           Text("~${numformat.format(malere)}%", style:  TextStyle(fontSize: 12,color: Colors.cyan[800]),),
-                              
+
                                                                         ],
                                                                       )
-                              
+
                                                                     ],
                                                                   ),
                                                                 ],
@@ -588,8 +649,8 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                       ],
                                                     ));
                                               }
-                              
-                              
+
+
                                             }
                                             return CarouselSlider(
                                                 items: consdata,
@@ -598,7 +659,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                   height: 100,
                                                   viewportFraction: vpw,
                                                   enlargeCenterPage: false,
-                              
+
                                                 )
                                             );
                                           }
@@ -897,11 +958,11 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                             //return Text("data");
                                                           }
                                                           else if(snapshot.hasError){
-                              
-                              
+
+
                                                           }
                                                           else if(!snapshot.hasData){
-                              
+
                                                           }
                                                           return Container(
                                                             padding: const EdgeInsets.all(16.0),
@@ -1006,7 +1067,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                               ],
                                                             ),
                                                           );
-                              
+
                                                         },
                                                       ),
                                                       Container(
@@ -1086,10 +1147,12 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                               child: Column(
                                                 children: [
                                                   Wrap(
+                                                    spacing: 5,
+                                                    runSpacing: 5,
                                                     children: [
                                                       Container(
                                                         height: 700,
-                                                        width: 900,
+                                                        width: cw,
                                                         decoration: BoxDecoration(
                                                             color: Colors.green[900]?.withOpacity(0.2),
                                                             borderRadius: const BorderRadius.all(Radius.circular(8))
@@ -1099,7 +1162,6 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                           child: SimpleBarChart(),
                                                         ),
                                                       ),
-                                                      const SizedBox(width: 8),
                                                       FutureBuilder<RegionalSummaryResponse>(
                                                         future: value.fetchRegionalSummary(),
                                                         builder: (BuildContext context, AsyncSnapshot<RegionalSummaryResponse> snapshot) {
@@ -1123,11 +1185,11 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                               //regionalcode.add(code);
                                                               // totals.add(total);
                                                             }
-                              
+
                                                           }
                                                           return Container(
                                                             height: 700,
-                                                            width: 900,
+                                                            width: cw,
                                                             decoration: BoxDecoration(
                                                                 color: Colors.green[900]?.withOpacity(0.2),
                                                                 borderRadius: const BorderRadius.all(Radius.circular(8))
@@ -1207,7 +1269,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                                               return SideTitleWidget(child: Tooltip(message:"NORTH EAST",child: Text('Q', style: style)), axisSide: meta.axisSide);
                                                                             case 15:
                                                                               return SideTitleWidget(child: Tooltip(preferBelow:false,message:"UPPER EAST",child: Text('R', style: style)), axisSide: meta.axisSide);
-                              
+
                                                                             default:
                                                                               return SideTitleWidget(child: Text('---', style: style), axisSide: meta.axisSide);
                                                                           }
@@ -1267,13 +1329,18 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                 String _voterid=summary.voterid;
                                                 String _sex=summary.sex;
                                                 String _pscode=summary.pscode;
+                                                String _image=summary.image;
+                                                String _region=summary.region;
+                                                String _constituency=summary.constituency;
+                                                String _psname=summary.psname;
                                                 int _age=summary.age;
-                                                 names.add(Contents(name: summary.name, age: _age, voterid: _voterid, pscode: _pscode, sex: _sex,));
+                                                print(summary.image);
+                                                 names.add(Contents(name: summary.name, age: _age, voterid: _voterid, pscode: _pscode, sex: _sex, image: _image, constituency: _constituency, region: _region, psname: _psname,));
                                               }
                                               if (names.length ==0)
                                               {
                                                 names.add(Container(
-                                                  child: Column(
+                                                  child: const Column(
                                                     mainAxisAlignment: MainAxisAlignment.center,
                                                     children: <Widget>[
                                                       Icon(

@@ -55,7 +55,7 @@
 //
 //   static const FirebaseOptions android = FirebaseOptions(
 //     apiKey: 'AIzaSyDyIm_8-e8yrWCZjf_5dy6WevtuL9a6Gfk',
-//     appId: '1:348127732306:android:f828ddcc41e6853bccf58b',
+//     appId: '1:348127732306:android:7b9d199cea6766c8ccf58b',
 //     messagingSenderId: '348127732306',
 //     projectId: 'ecdata-eb3b2',
 //     storageBucket: 'ecdata-eb3b2.appspot.com',
@@ -63,19 +63,19 @@
 //
 //   static const FirebaseOptions ios = FirebaseOptions(
 //     apiKey: 'AIzaSyCaK-TZn-BZwVXKylQgYp7jt6JH2F5icgM',
-//     appId: '1:348127732306:ios:99269b0ff4cf58eaccf58b',
+//     appId: '1:348127732306:ios:49c4b4258c28cf67ccf58b',
 //     messagingSenderId: '348127732306',
 //     projectId: 'ecdata-eb3b2',
 //     storageBucket: 'ecdata-eb3b2.appspot.com',
-//     iosBundleId: 'com.kologsoft.com.teinDashboard',
+//     iosBundleId: 'com.ndc.ecdesk',
 //   );
 //
 //   static const FirebaseOptions macos = FirebaseOptions(
 //     apiKey: 'AIzaSyCaK-TZn-BZwVXKylQgYp7jt6JH2F5icgM',
-//     appId: '1:348127732306:ios:ce235bbdc3443a85ccf58b',
+//     appId: '1:348127732306:ios:d2e9d878f463b350ccf58b',
 //     messagingSenderId: '348127732306',
 //     projectId: 'ecdata-eb3b2',
 //     storageBucket: 'ecdata-eb3b2.appspot.com',
-//     iosBundleId: 'com.kologsoft.com.teinDashboard.RunnerTests',
+//     iosBundleId: 'com.ndc.ecdesk.RunnerTests',
 //   );
 // }

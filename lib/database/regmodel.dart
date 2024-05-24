@@ -52,9 +52,10 @@ class SearchSummary {
   final String psname;
   final String voterid;
   final String sex;
+  final String image;
   final int age;
 
-  SearchSummary({required this.sex,required this.psname,required this.name,required this.constituency, required this.region, required this.pscode, required this.voterid, required this.age, required this.id} );
+  SearchSummary({required this.image, required this.sex,required this.psname,required this.name,required this.constituency, required this.region, required this.pscode, required this.voterid, required this.age, required this.id} );
   factory SearchSummary.fromJson(Map<String, dynamic> json) {
     return SearchSummary(
       id: json['id'],
@@ -66,6 +67,7 @@ class SearchSummary {
       voterid: json['voterid'],
       age: json['age'],
       sex: json['sex'],
+      image: json['image'],
     );
   }
 }

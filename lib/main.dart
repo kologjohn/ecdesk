@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:ecdesk/forms/login_form.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -11,7 +11,14 @@ import 'package:firedart/firedart.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  FirebaseAuth.initialize('AIzaSyBSVeEDy4oZGkqTY7pYWvsJz6Cm-O1HPGo', VolatileStore());
+  String keys="";
+  if (kIsWeb)
+    {
+      keys="AIzaSyBSVeEDy4oZGkqTY7pYWvsJz6Cm-O1HPGo";
+    }else{
+    keys="AIzaSyDyIm_8-e8yrWCZjf_5dy6WevtuL9a6Gfk";
+  }
+  FirebaseAuth.initialize(keys, VolatileStore());
   Firestore.initialize('ecdata-eb3b2');
   //await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   // if(kIsWeb){
@@ -59,11 +66,10 @@ class _MyAppState extends State<MyApp> {
     return ChangeNotifierProvider(
       lazy: false,
       create: (BuildContext context)=>FirebaseAccounts(),
-      child: MaterialApp(
+      child: const MaterialApp(
         title: 'EC-DATA CENTER',
         debugShowCheckedModeBanner: false,
-        home: LoginForm()
-        //ResponsiveLayout(mobileScaffold: DesktopScaffold(), tabletScaffold: DesktopScaffold(), desktopScaffold: LoginForm()),
+        home: ResponsiveLayout(mobileScaffold: DesktopScaffold(), tabletScaffold: DesktopScaffold(), desktopScaffold: DesktopScaffold()),
       ),
     );
   }
