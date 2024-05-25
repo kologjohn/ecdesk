@@ -83,151 +83,151 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
             backgroundColor: Colors.white,
             appBar: AppBar(
               centerTitle: true,
-            toolbarHeight: 80,
-            backgroundColor: Colors.green[900],
-            title: Row(
-              children: [
-                Expanded(
-                    child: Container(
-                      child: Column(
-                        children: [
-                          Wrap(
-                            spacing: 5,
-                            runSpacing: 5,
-                            children: [
-                              FittedBox(
-                                fit: BoxFit.contain,
-                                child: Container(
-                                  width: cw,
-                                  child: const Text("NATIONAL DEMOCRATIC CONGRESS - EC DATABASE",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20
+              toolbarHeight: 80,
+              backgroundColor: Colors.green[900],
+              title: Row(
+                children: [
+                  Expanded(
+                      child: Container(
+                        child: Column(
+                          children: [
+                            Wrap(
+                              spacing: 5,
+                              runSpacing: 5,
+                              children: [
+                                FittedBox(
+                                  fit: BoxFit.contain,
+                                  child: Container(
+                                    width: cw,
+                                    child: const Text("NATIONAL DEMOCRATIC CONGRESS - EC DATABASE",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              FittedBox(
-                                fit: BoxFit.contain,
-                                child: Container(
-                                  width: cw,
-                                  child: Row(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      // Expanded(
-                                      //   child: Container(
-                                      //       //height: 50,
-                                      //       //width: 300,
-                                      //       //color: Colors.white54,
-                                      //     decoration: const BoxDecoration(
-                                      //         border: Border(
-                                      //           top: BorderSide(color: Colors.white),
-                                      //           bottom: BorderSide(color: Colors.white),
-                                      //           left: BorderSide(color: Colors.white),
-                                      //           right: BorderSide(color: Colors.white),
-                                      //         )
-                                      //     ),
-                                      //       child: Padding(
-                                      //         padding: const EdgeInsets.only(left: 8.0),
-                                      //         child: Row(
-                                      //           children: [
-                                      //             DropdownButton<String>(
-                                      //               hint: const Text(
-                                      //                   'Select Region',
-                                      //                 style: TextStyle(
-                                      //                   color: Colors.white
-                                      //                 ),
-                                      //               ),
-                                      //               value: _selectedRegion,
-                                      //               onChanged: (String? newValue) {
-                                      //                 setState(() {
-                                      //                   _selectedRegion = newValue;
-                                      //                 });
-                                      //               },
-                                      //               items: _regions.map<DropdownMenuItem<String>>((String value) {
-                                      //                 return DropdownMenuItem<String>(
-                                      //                   value: value,
-                                      //                   child: Text(value),
-                                      //                 );
-                                      //               }).toList(),
-                                      //             ),
-                                      //           ],
-                                      //         ),
-                                      //       )
-                                      //   ),
-                                      // ),
-                                      // const SizedBox(width: 8),
-                                      Container(
-                                        //height: 50,
-                                        //width: 300,
-                                        decoration: const BoxDecoration(
-                                          //color: Colors.orange,
-                                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                                            border: Border(
-                                              top: BorderSide(color: Colors.white),
-                                              bottom: BorderSide(color: Colors.white),
-                                              left: BorderSide(color: Colors.white),
-                                              right: BorderSide(color: Colors.white),
-                                            )
-                                        ),
-                                        child:  Column(
+                                FittedBox(
+                                  fit: BoxFit.contain,
+                                  child: Container(
+                                    width: cw,
+                                    child: Row(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        // Expanded(
+                                        //   child: Container(
+                                        //       //height: 50,
+                                        //       //width: 300,
+                                        //       //color: Colors.white54,
+                                        //     decoration: const BoxDecoration(
+                                        //         border: Border(
+                                        //           top: BorderSide(color: Colors.white),
+                                        //           bottom: BorderSide(color: Colors.white),
+                                        //           left: BorderSide(color: Colors.white),
+                                        //           right: BorderSide(color: Colors.white),
+                                        //         )
+                                        //     ),
+                                        //       child: Padding(
+                                        //         padding: const EdgeInsets.only(left: 8.0),
+                                        //         child: Row(
+                                        //           children: [
+                                        //             DropdownButton<String>(
+                                        //               hint: const Text(
+                                        //                   'Select Region',
+                                        //                 style: TextStyle(
+                                        //                   color: Colors.white
+                                        //                 ),
+                                        //               ),
+                                        //               value: _selectedRegion,
+                                        //               onChanged: (String? newValue) {
+                                        //                 setState(() {
+                                        //                   _selectedRegion = newValue;
+                                        //                 });
+                                        //               },
+                                        //               items: _regions.map<DropdownMenuItem<String>>((String value) {
+                                        //                 return DropdownMenuItem<String>(
+                                        //                   value: value,
+                                        //                   child: Text(value),
+                                        //                 );
+                                        //               }).toList(),
+                                        //             ),
+                                        //           ],
+                                        //         ),
+                                        //       )
+                                        //   ),
+                                        // ),
+                                        // const SizedBox(width: 8),
+                                        Container(
+                                          //height: 50,
+                                          //width: 300,
+                                          decoration: const BoxDecoration(
+                                            //color: Colors.orange,
+                                              borderRadius: BorderRadius.all(Radius.circular(10)),
+                                              border: Border(
+                                                top: BorderSide(color: Colors.white),
+                                                bottom: BorderSide(color: Colors.white),
+                                                left: BorderSide(color: Colors.white),
+                                                right: BorderSide(color: Colors.white),
+                                              )
+                                          ),
+                                          child:  Column(
 
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsets.only(left: 8.0),
-                                              child: Center(
-                                                child: FittedBox(
-                                                  child: Container(
-                                                    width: scw*0.9,
-                                                    child:  TextField(
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsets.only(left: 8.0),
+                                                child: Center(
+                                                  child: FittedBox(
+                                                    child: Container(
+                                                      width: scw*0.9,
+                                                      child:  TextField(
 
-                                                      style: TextStyle(color:Colors.white),
-                                                      controller: searchcontroller,
-                                                      onChanged: (text){
-                                                        value.desktoshow(text);
-                                                        value.seearchifo(text);
-                                                      },
-                                                      decoration: InputDecoration(
-                                                        suffixIcon: InkWell(
-                                                            onTap: (){
-                                                              Navigator.push(
-                                                                context,
-                                                                MaterialPageRoute(builder: (context) => const QRViewExample()),
-                                                              );
-                                                            },
-                                                            child: Icon(Icons.qr_code)),
-                                                        suffixIconColor: Colors.white,
-                                                        hintText: 'Search...',
-                                                        hintStyle: TextStyle(color: Colors.white54, fontSize: 12),
-                                                        prefixIcon: Icon(Icons.search),
-                                                        prefixIconColor: Colors.white,
-                                                        fillColor: Colors.blue,
-                                                        filled: false,
-                                                        border: InputBorder.none,
+                                                        style: TextStyle(color:Colors.white),
+                                                        controller: searchcontroller,
+                                                        onChanged: (text){
+                                                          value.desktoshow(text);
+                                                          value.seearchifo(text);
+                                                        },
+                                                        decoration: InputDecoration(
+                                                          suffixIcon: InkWell(
+                                                              onTap: (){
+                                                                Navigator.push(
+                                                                  context,
+                                                                  MaterialPageRoute(builder: (context) => const QRViewExample()),
+                                                                );
+                                                              },
+                                                              child: Icon(Icons.qr_code)),
+                                                          suffixIconColor: Colors.white,
+                                                          hintText: 'Search...',
+                                                          hintStyle: TextStyle(color: Colors.white54, fontSize: 12),
+                                                          prefixIcon: Icon(Icons.search),
+                                                          prefixIconColor: Colors.white,
+                                                          fillColor: Colors.blue,
+                                                          filled: false,
+                                                          border: InputBorder.none,
 
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
                                                 ),
-                                              ),
-                                            )
-                                          ],
+                                              )
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                    )
-                )
-              ],
-            ),
+                              ],
+                            )
+                          ],
+                        ),
+                      )
+                  )
+                ],
+              ),
 
             ),
             body:  Padding(
@@ -488,13 +488,14 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                                   const Text("Age Distribution"),
                                                                   Padding(
                                                                     padding: const EdgeInsets.all(8.0),
-                                                                    child: Row(
-                                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                      children: [
-                                                                        Expanded(
-                                                                          //flex: 2,
-                                                                          child: Container(
+                                                                    child: SingleChildScrollView(
+                                                                      scrollDirection: Axis.horizontal,
+                                                                      child: Row(
+                                                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                        children: [
+                                                                          Container(
                                                                               height: 300,
+                                                                              width: bardata.length * 60.0, // Adjust the width based on the number of bars
                                                                               child: BarChart(
                                                                                 BarChartData(
                                                                                   alignment: BarChartAlignment.spaceAround,
@@ -560,9 +561,9 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                                                   barGroups: bardata,
                                                                                 ),
                                                                               )
-                                                                          ),
-                                                                        )
-                                                                      ],
+                                                                          )
+                                                                        ],
+                                                                      ),
                                                                     ),
                                                                   )
                                                                 ],
@@ -1189,153 +1190,310 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                     spacing: 5,
                                                     runSpacing: 5,
                                                     children: [
-                                                      Container(
-                                                        height: 700,
-                                                        width: cw,
-                                                        decoration: BoxDecoration(
-                                                            color: Colors.green[900]?.withOpacity(0.2),
-                                                            borderRadius: const BorderRadius.all(Radius.circular(8))
-                                                        ),
-                                                        child: Padding(
-                                                          padding: const EdgeInsets.all(30.0),
-                                                          child: SimpleBarChart(),
-                                                        ),
+                                                      FutureBuilder<AgereResponse>(
+                                                        future: value.fetchAgeGroupData(),
+                                                        builder: (context, snapshot) {
+                                                          int xx=0;
+                                                          List<int> dd=[];
+                                                          if (snapshot.connectionState == ConnectionState.waiting) {
+                                                            return const Center(child: CircularProgressIndicator());
+                                                          } else if (snapshot.hasError) {
+                                                            return Center(child: Text('Error: ${snapshot.error}'));
+                                                          } else if (snapshot.hasData) {
+
+                                                            int datalength=snapshot.data!.agesuSummary.length;
+                                                            bardata.clear();
+                                                            for (int i=0; i<datalength; i++){
+                                                              final summary = snapshot.data!.agesuSummary[i];
+                                                              //print(summary.age_group);
+                                                              double ff=double.parse("${summary.count}");
+                                                              dd.add(summary.count);
+                                                              bardata.add(
+                                                                  BarChartGroupData(
+                                                                    x: i,
+                                                                    barRods: [
+                                                                      BarChartRodData(toY: ff, color: Colors.green[900])
+                                                                    ],
+                                                                  )
+                                                              );
+                                                            }
+                                                            int maxNumber = dd.reduce((a, b) => a > b ? a : b);
+
+                                                            return Container(
+                                                              height: 700,
+                                                              width: cw,
+                                                              decoration: BoxDecoration(
+                                                                  color: Colors.green[900]?.withOpacity(0.2),
+                                                                  borderRadius: const BorderRadius.all(Radius.circular(8))
+                                                              ),
+                                                              child: Column(
+                                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                                children: [
+                                                                  Padding(
+                                                                    padding: const EdgeInsets.all(8.0),
+                                                                    child: SingleChildScrollView(
+                                                                      scrollDirection: Axis.horizontal,
+                                                                      child: Row(
+                                                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                        children: [
+                                                                          Container(
+                                                                              height: 650,
+                                                                              width: bardata.length * 60.0,
+                                                                              child: BarChart(
+                                                                                BarChartData(
+                                                                                  alignment: BarChartAlignment.spaceAround,
+                                                                                  maxY: double.parse("$maxNumber"),
+                                                                                  barTouchData: BarTouchData(enabled: true),
+                                                                                  titlesData: FlTitlesData(
+                                                                                    leftTitles: AxisTitles(
+                                                                                      sideTitles: SideTitles(
+                                                                                        showTitles: true,
+                                                                                        getTitlesWidget: (value, meta) {
+                                                                                          return SideTitleWidget(
+                                                                                            axisSide: meta.axisSide,
+                                                                                            child: Text(value.toInt().toString(), style: TextStyle(color: Colors.black, fontSize: 14)),
+                                                                                          );
+                                                                                        },
+                                                                                        reservedSize: 40,
+                                                                                      ),
+                                                                                    ),
+                                                                                    bottomTitles: AxisTitles(
+                                                                                      sideTitles: SideTitles(
+                                                                                        showTitles: true,
+                                                                                        getTitlesWidget: (value, meta) {
+                                                                                          const style = TextStyle(
+                                                                                            color: Colors.black,
+                                                                                            fontWeight: FontWeight.bold,
+                                                                                            fontSize: 12,
+                                                                                          );
+                                                                                          switch (value) {
+                                                                                            case 0:
+                                                                                              return SideTitleWidget(child: Text('100+', style: style), axisSide: meta.axisSide);
+                                                                                            case 1:
+                                                                                              return SideTitleWidget(child: Text('18-24', style: style), axisSide: meta.axisSide);
+                                                                                            case 2:
+                                                                                              return SideTitleWidget(child: Text('25-31', style: style), axisSide: meta.axisSide);
+                                                                                            case 3:
+                                                                                              return SideTitleWidget(child: Text('32-38', style: style), axisSide: meta.axisSide);
+                                                                                            case 4:
+                                                                                              return SideTitleWidget(child: Text('39-45', style: style), axisSide: meta.axisSide);
+                                                                                            case 5:
+                                                                                              return SideTitleWidget(child: Text('46-52', style: style), axisSide: meta.axisSide);
+                                                                                            case 6:
+                                                                                              return SideTitleWidget(child: Text('53-59', style: style), axisSide: meta.axisSide);
+                                                                                            case 7:
+                                                                                              return SideTitleWidget(child: Text('60-66', style: style), axisSide: meta.axisSide);
+                                                                                            case 8:
+                                                                                              return SideTitleWidget(child: Text('67-73', style: style), axisSide: meta.axisSide);
+                                                                                            case 9:
+                                                                                              return SideTitleWidget(child: Text('74-80', style: style), axisSide: meta.axisSide);
+                                                                                            case 10:
+                                                                                              return SideTitleWidget(child: Text('81-87', style: style), axisSide: meta.axisSide);
+                                                                                            case 11:
+                                                                                              return SideTitleWidget(child: Text('88-94', style: style), axisSide: meta.axisSide);
+                                                                                            case 12:
+                                                                                              return SideTitleWidget(child: Text('95-101', style: style), axisSide: meta.axisSide);
+                                                                                            default:
+                                                                                              return SideTitleWidget(child: Text('', style: style), axisSide: meta.axisSide);
+                                                                                          }
+                                                                                        },
+                                                                                      ),
+                                                                                    ),
+                                                                                  ),
+                                                                                  borderData: FlBorderData(show: true),
+                                                                                  barGroups: bardata,
+                                                                                ),
+                                                                              )
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                  )
+                                                                ],
+                                                              ),
+                                                            );
+
+                                                          } else {
+                                                            //print("has data");
+                                                            return const Center(child: Text('No data available'));
+                                                          }
+                                                        },
                                                       ),
+                                                      // Container(
+                                                      //   height: 700,
+                                                      //   width: cw,
+                                                      //   decoration: BoxDecoration(
+                                                      //       color: Colors.green[900]?.withOpacity(0.2),
+                                                      //       borderRadius: const BorderRadius.all(Radius.circular(8))
+                                                      //   ),
+                                                      //   child: Padding(
+                                                      //     padding: const EdgeInsets.all(30.0),
+                                                      //     child: SimpleBarChart(),
+                                                      //   ),
+                                                      // ),
                                                       FutureBuilder<RegionalSummaryResponse>(
                                                         future: value.fetchRegionalSummary(),
                                                         builder: (BuildContext context, AsyncSnapshot<RegionalSummaryResponse> snapshot) {
-                                                          if(snapshot.hasData)
-                                                          {
-                                                            int datalength=snapshot.data!.regionalSummary.length;
+                                                          if (snapshot.hasData) {
+                                                            int datalength = snapshot.data!.regionalSummary.length;
                                                             maleline.clear();
                                                             femaleline.clear();
-                                                            for (int i=0; i<datalength; i++){
+                                                            for (int i = 0; i < datalength; i++) {
                                                               final summary = snapshot.data!.regionalSummary[i];
-                                                              String code = summary.id;
-                                                              String total =summary.totalVoters.toString();
-                                                              int totals =summary.totalVoters;
-                                                              totalvoters+=totals;
-                                                              String regionnames = summary.region;
-                                                              int male=summary.male;
-                                                              int female=summary.female;
+                                                              int male = summary.male;
+                                                              int female = summary.female;
                                                               maleline.add(double.parse("$male"));
                                                               femaleline.add(double.parse("$female"));
-                                                              //femaleline.add(FlSpot(double.parse("$i"), double.parse("$femaleline")));
-                                                              //regionalcode.add(code);
-                                                              // totals.add(total);
                                                             }
-
                                                           }
                                                           return Container(
                                                             height: 700,
                                                             width: cw,
                                                             decoration: BoxDecoration(
-                                                                color: Colors.green[900]?.withOpacity(0.2),
-                                                                borderRadius: const BorderRadius.all(Radius.circular(8))
+                                                              color: Colors.green[900]?.withOpacity(0.2),
+                                                              borderRadius: const BorderRadius.all(Radius.circular(8)),
                                                             ),
-                                                            child: Padding(
-                                                              padding: const EdgeInsets.all(30.0),
-                                                              child: LineChart(
-                                                                LineChartData(
-                                                                  lineBarsData: [
-                                                                    LineChartBarData(
-                                                                      spots: [
-                                                                        for(int i=0;i<femaleline.length;i++)
-                                                                          FlSpot(double.parse("$i"), femaleline[i])
+                                                            child: SingleChildScrollView(
+                                                              scrollDirection: Axis.horizontal,
+                                                              child: Padding(
+                                                                padding: const EdgeInsets.all(30.0),
+                                                                child: Container(
+                                                                  width: femaleline.length * 47.5,
+                                                                  child: LineChart(
+                                                                    LineChartData(
+                                                                      lineBarsData: [
+                                                                        LineChartBarData(
+                                                                          spots: [
+                                                                            for (int i = 0; i < femaleline.length; i++)
+                                                                              FlSpot(double.parse("$i"), femaleline[i])
+                                                                          ],
+                                                                          isCurved: true,
+                                                                          color: Colors.blue,
+                                                                          barWidth: 2,
+                                                                          isStrokeCapRound: true,
+                                                                          dotData: FlDotData(show: false),
+                                                                          belowBarData: BarAreaData(show: false),
+                                                                        ),
+                                                                        LineChartBarData(
+                                                                          spots: [
+                                                                            for (int i = 0; i < maleline.length; i++)
+                                                                              FlSpot(double.parse("$i"), maleline[i])
+                                                                          ],
+                                                                          isCurved: true,
+                                                                          color: Colors.green,
+                                                                          barWidth: 2,
+                                                                          isStrokeCapRound: true,
+                                                                          dotData: FlDotData(show: false),
+                                                                          belowBarData: BarAreaData(show: false),
+                                                                        ),
                                                                       ],
-                                                                      isCurved: true,
-                                                                      color: Colors.blue,
-                                                                      barWidth: 2,
-                                                                      isStrokeCapRound: true,
-                                                                      dotData: FlDotData(show: false),
-                                                                      belowBarData: BarAreaData(show: false),
-                                                                    ),
-                                                                    LineChartBarData(
-                                                                      spots: [
-                                                                        for(int i=0;i<maleline.length;i++)
-                                                                          FlSpot(double.parse("$i"), maleline[i])
-                                                                      ],
-                                                                      isCurved: true,
-                                                                      color: Colors.green,
-                                                                      barWidth: 2,
-                                                                      isStrokeCapRound: true,
-                                                                      dotData: FlDotData(show: false),
-                                                                      belowBarData: BarAreaData(show: false),
-                                                                    ),
-                                                                  ],
-                                                                  minY: 0,
-                                                                  titlesData: FlTitlesData(
-                                                                    bottomTitles: AxisTitles(
-                                                                      sideTitles: SideTitles(
-                                                                        showTitles: true,
-                                                                        reservedSize: 30,
-                                                                        getTitlesWidget: (value, meta) {
-                                                                          const style = TextStyle(
-                                                                            color: Colors.black,
-                                                                            fontWeight: FontWeight.bold,
-                                                                            fontSize: 14,
-                                                                          );
-                                                                          switch (value) {
-                                                                            case 0:
-                                                                              return SideTitleWidget(child: Tooltip(message:"WESTERN",child: Text('A', style: style)), axisSide: meta.axisSide);
-                                                                            case 1:
-                                                                              return SideTitleWidget(child: Tooltip(message:"CENTRAL",child: Text('B', style: style)), axisSide: meta.axisSide);
-                                                                            case 2:
-                                                                              return SideTitleWidget(child: Tooltip(message:"GREATER ACCRA",child: Text('C', style: style)), axisSide: meta.axisSide);
-                                                                            case 3:
-                                                                              return SideTitleWidget(child: Tooltip(message:"VOLTA",child: Text('D', style: style)), axisSide: meta.axisSide);
-                                                                            case 4:
-                                                                              return SideTitleWidget(child: Tooltip(message:"EASTERN",child: Text('E', style: style)), axisSide: meta.axisSide);
-                                                                            case 5:
-                                                                              return SideTitleWidget(child: Tooltip(message:"ASHANTI",child: Text('F', style: style)), axisSide: meta.axisSide);
-                                                                            case 6:
-                                                                              return SideTitleWidget(child: Tooltip(message:"WESTERN NORTH",child: Text('G', style: style)), axisSide: meta.axisSide);
-                                                                            case 7:
-                                                                              return SideTitleWidget(child: Tooltip(message:"AHAFO",child: Text('H', style: style)), axisSide: meta.axisSide);
-                                                                            case 8:
-                                                                              return SideTitleWidget(child: Tooltip(message:"BONO",child: Text('J', style: style)), axisSide: meta.axisSide);
-                                                                            case 9:
-                                                                              return SideTitleWidget(child: Tooltip(message:"BONO EAST",child: Text('K', style: style)), axisSide: meta.axisSide);
-                                                                            case 10:
-                                                                              return SideTitleWidget(child: Tooltip(message:"OTI",child: Text('L', style: style)), axisSide: meta.axisSide);
-                                                                            case 11:
-                                                                              return SideTitleWidget(child: Tooltip(message:"NORTHERN ",child: Text('M', style: style)), axisSide: meta.axisSide);
-                                                                            case 12:
-                                                                              return SideTitleWidget(child: Tooltip(message:"SAVANNAH ",child: Text('N', style: style)), axisSide: meta.axisSide);
-                                                                            case 13:
-                                                                              return SideTitleWidget(child: Tooltip(message:"UPPER WEST",child: Text('P', style: style)), axisSide: meta.axisSide);
-                                                                            case 14:
-                                                                              return SideTitleWidget(child: Tooltip(message:"NORTH EAST",child: Text('Q', style: style)), axisSide: meta.axisSide);
-                                                                            case 15:
-                                                                              return SideTitleWidget(child: Tooltip(preferBelow:false,message:"UPPER EAST",child: Text('R', style: style)), axisSide: meta.axisSide);
-
-                                                                            default:
-                                                                              return SideTitleWidget(child: Text('---', style: style), axisSide: meta.axisSide);
-                                                                          }
-                                                                        },
+                                                                      minY: 0,
+                                                                      titlesData: FlTitlesData(
+                                                                        bottomTitles: AxisTitles(
+                                                                          sideTitles: SideTitles(
+                                                                            showTitles: true,
+                                                                            reservedSize: 30,
+                                                                            getTitlesWidget: (value, meta) {
+                                                                              const style = TextStyle(
+                                                                                color: Colors.black,
+                                                                                fontWeight: FontWeight.bold,
+                                                                                fontSize: 14,
+                                                                              );
+                                                                              switch (value) {
+                                                                                case 0:
+                                                                                  return SideTitleWidget(
+                                                                                      child: Tooltip(message: "WESTERN", child: Text('A', style: style)),
+                                                                                      axisSide: meta.axisSide);
+                                                                                case 1:
+                                                                                  return SideTitleWidget(
+                                                                                      child: Tooltip(message: "CENTRAL", child: Text('B', style: style)),
+                                                                                      axisSide: meta.axisSide);
+                                                                                case 2:
+                                                                                  return SideTitleWidget(
+                                                                                      child: Tooltip(message: "GREATER ACCRA", child: Text('C', style: style)),
+                                                                                      axisSide: meta.axisSide);
+                                                                                case 3:
+                                                                                  return SideTitleWidget(
+                                                                                      child: Tooltip(message: "VOLTA", child: Text('D', style: style)),
+                                                                                      axisSide: meta.axisSide);
+                                                                                case 4:
+                                                                                  return SideTitleWidget(
+                                                                                      child: Tooltip(message: "EASTERN", child: Text('E', style: style)),
+                                                                                      axisSide: meta.axisSide);
+                                                                                case 5:
+                                                                                  return SideTitleWidget(
+                                                                                      child: Tooltip(message: "ASHANTI", child: Text('F', style: style)),
+                                                                                      axisSide: meta.axisSide);
+                                                                                case 6:
+                                                                                  return SideTitleWidget(
+                                                                                      child: Tooltip(message: "WESTERN NORTH", child: Text('G', style: style)),
+                                                                                      axisSide: meta.axisSide);
+                                                                                case 7:
+                                                                                  return SideTitleWidget(
+                                                                                      child: Tooltip(message: "AHAFO", child: Text('H', style: style)),
+                                                                                      axisSide: meta.axisSide);
+                                                                                case 8:
+                                                                                  return SideTitleWidget(
+                                                                                      child: Tooltip(message: "BONO", child: Text('J', style: style)),
+                                                                                      axisSide: meta.axisSide);
+                                                                                case 9:
+                                                                                  return SideTitleWidget(
+                                                                                      child: Tooltip(message: "BONO EAST", child: Text('K', style: style)),
+                                                                                      axisSide: meta.axisSide);
+                                                                                case 10:
+                                                                                  return SideTitleWidget(
+                                                                                      child: Tooltip(message: "OTI", child: Text('L', style: style)),
+                                                                                      axisSide: meta.axisSide);
+                                                                                case 11:
+                                                                                  return SideTitleWidget(
+                                                                                      child: Tooltip(message: "NORTHERN ", child: Text('M', style: style)),
+                                                                                      axisSide: meta.axisSide);
+                                                                                case 12:
+                                                                                  return SideTitleWidget(
+                                                                                      child: Tooltip(message: "SAVANNAH ", child: Text('N', style: style)),
+                                                                                      axisSide: meta.axisSide);
+                                                                                case 13:
+                                                                                  return SideTitleWidget(
+                                                                                      child: Tooltip(message: "UPPER WEST", child: Text('P', style: style)),
+                                                                                      axisSide: meta.axisSide);
+                                                                                case 14:
+                                                                                  return SideTitleWidget(
+                                                                                      child: Tooltip(message: "NORTH EAST", child: Text('Q', style: style)),
+                                                                                      axisSide: meta.axisSide);
+                                                                                case 15:
+                                                                                  return SideTitleWidget(
+                                                                                      child: Tooltip(preferBelow: false, message: "UPPER EAST", child: Text('R', style: style)),
+                                                                                      axisSide: meta.axisSide);
+                                                                                default:
+                                                                                  return SideTitleWidget(
+                                                                                      child: Text('---', style: style), axisSide: meta.axisSide);
+                                                                              }
+                                                                            },
+                                                                          ),
+                                                                        ),
+                                                                        leftTitles: AxisTitles(
+                                                                          sideTitles: SideTitles(
+                                                                            showTitles: true,
+                                                                            getTitlesWidget: (value, meta) {
+                                                                              return SideTitleWidget(
+                                                                                space: 5,
+                                                                                axisSide: meta.axisSide,
+                                                                                child: Text('$value', style: TextStyle(color: Colors.black, fontSize: 12)),
+                                                                              );
+                                                                            },
+                                                                            reservedSize: 40,
+                                                                          ),
+                                                                        ),
                                                                       ),
-                                                                    ),
-                                                                    leftTitles: AxisTitles(
-                                                                      sideTitles: SideTitles(
-                                                                        showTitles: true,
-                                                                        getTitlesWidget: (value, meta) {
-                                                                          return SideTitleWidget(
-                                                                            space: 5,
-                                                                            axisSide:meta.axisSide,
-                                                                            child: Text('$value', style: TextStyle(color: Colors.black, fontSize: 12)),
-                                                                          );
-                                                                        },
-                                                                        reservedSize: 40,
-                                                                      ),
+                                                                      gridData: FlGridData(show: true),
                                                                     ),
                                                                   ),
-                                                                  gridData: FlGridData(show: true),
                                                                 ),
                                                               ),
                                                             ),
                                                           );
                                                         },
-                                                      )
+                                                      ),
                                                     ],
                                                   )
                                                 ],
@@ -1374,7 +1532,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                 String _psname=summary.psname;
                                                 int _age=summary.age;
                                                 print(summary.image);
-                                                 names.add(Contents(name: summary.name, age: _age, voterid: _voterid, pscode: _pscode, sex: _sex, image: _image, constituency: _constituency, region: _region, psname: _psname,));
+                                                names.add(Contents(name: summary.name, age: _age, voterid: _voterid, pscode: _pscode, sex: _sex, image: _image, constituency: _constituency, region: _region, psname: _psname,));
                                               }
                                               if (names.length ==0)
                                               {
@@ -1410,16 +1568,16 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                               print(snapshot.error);
                                             }
                                             else
-                                              {
-                                                print("No Data");
-                                              }
+                                            {
+                                              print("No Data");
+                                            }
                                             return  Container(
                                               child: Column(
                                                 children: [
                                                   Wrap(
-                                                    spacing: 5,
-                                                    runSpacing: 5,
-                                                    children: names
+                                                      spacing: 5,
+                                                      runSpacing: 5,
+                                                      children: names
                                                   )
                                                 ],
                                               ),
