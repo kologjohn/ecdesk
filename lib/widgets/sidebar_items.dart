@@ -18,7 +18,7 @@ class SidebarItem extends StatelessWidget {
     return ListTile(
       leading: Icon(icon, color: Colors.white),
       title: isExpanded
-          ? Text(text, style: TextStyle(color: Colors.white))
+          ? Text(text, style: const TextStyle(color: Colors.white))
           : null,
       onTap: onTap,
     );

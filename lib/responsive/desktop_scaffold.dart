@@ -76,7 +76,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
         double screenWidth = screenSize.width;
         double screenHeight = screenSize.height;
         double cw=(screenWidth)*0.438;
-        double scw=(screenWidth)*0.235;
+        double scw=(screenWidth)*0.218;
 
         if(screenWidth <800){
           cw = screenWidth;
@@ -91,7 +91,8 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
         return Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
-            toolbarHeight: 100,
+              centerTitle: true,
+            toolbarHeight: 80,
             backgroundColor: Colors.green[900],
             title: Row(
               children: [
@@ -265,7 +266,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                               ),
                               SidebarItem(
                                 icon: Icons.person,
-                                text: 'Profile',
+                                text: 'Add User',
                                 isExpanded: isSidebarExpanded,
                                 onTap: () {  },
                               ),
@@ -570,7 +571,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Container(
-                                      width: screenWidth*0.95,
+                                      width: screenWidth*0.88,
                                       decoration: BoxDecoration(
                                         borderRadius: const BorderRadius.all(Radius.circular(8)),
                                         color: Colors.green[900]?.withOpacity(0.2),
@@ -599,49 +600,52 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                       children: [
                                                         Padding(
                                                           padding: const EdgeInsets.all(2.0),
-                                                          child: Container(
-                                                            height: 100,
-                                                            width: 250,
-                                                            decoration: BoxDecoration(
-                                                                color: Colors.green[900]?.withOpacity(0.2),
-                                                                borderRadius: const BorderRadius.all(Radius.circular(8))
-                                                            ),
-                                                            child: Padding(
-                                                              padding: const EdgeInsets.all(8.0),
-                                                              child: Column(
-                                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                                children: [
-                                                                  FittedBox(fit:BoxFit.contain,child: Text(constituency, style: const TextStyle(fontSize: 14,fontWeight: FontWeight.bold),)),
-                                                                  Row(
-                                                                    children: [
-                                                                      const Icon(Icons.person,color: Colors.black12,),
-                                                                      const Text("Female: "),
-                                                                      Row(
-                                                                        children: [
-                                                                          Text(numformat.format(f), style: const TextStyle(fontSize: 12),),
-                                                                          Text("~${numformat.format(femalere)}%", style:  TextStyle(fontSize: 12,color: Colors.cyan[800]),),
+                                                          child: FittedBox(
+                                                            fit: BoxFit.contain,
+                                                            child: Container(
+                                                              height: 100,
+                                                              width: 250,
+                                                              decoration: BoxDecoration(
+                                                                  color: Colors.green[900]?.withOpacity(0.2),
+                                                                  borderRadius: const BorderRadius.all(Radius.circular(8))
+                                                              ),
+                                                              child: Padding(
+                                                                padding: const EdgeInsets.all(8.0),
+                                                                child: Column(
+                                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                                  children: [
+                                                                    FittedBox(fit:BoxFit.contain,child: Text(constituency, style: const TextStyle(fontSize: 14,fontWeight: FontWeight.bold),)),
+                                                                    Row(
+                                                                      children: [
+                                                                        const Icon(Icons.person,color: Colors.black12,),
+                                                                        const Text("Female: "),
+                                                                        Row(
+                                                                          children: [
+                                                                            Text(numformat.format(f), style: const TextStyle(fontSize: 12),),
+                                                                            Text("~${numformat.format(femalere)}%", style:  TextStyle(fontSize: 12,color: Colors.cyan[800]),),
 
-                                                                        ],
-                                                                      ),
+                                                                          ],
+                                                                        ),
 
-                                                                      // Text("${f}~${numformat.format(femalere)}%", style: const TextStyle(fontSize: 12),),
-                                                                    ],
-                                                                  ),
-                                                                  Row(
-                                                                    children: [
-                                                                      const Icon(Icons.person,color: Colors.black12),
-                                                                      const Text("Male: "),
-                                                                      Row(
-                                                                        children: [
-                                                                          Text("${m}", style: const TextStyle(fontSize: 12),),
-                                                                          Text("~${numformat.format(malere)}%", style:  TextStyle(fontSize: 12,color: Colors.cyan[800]),),
+                                                                        // Text("${f}~${numformat.format(femalere)}%", style: const TextStyle(fontSize: 12),),
+                                                                      ],
+                                                                    ),
+                                                                    Row(
+                                                                      children: [
+                                                                        const Icon(Icons.person,color: Colors.black12),
+                                                                        const Text("Male: "),
+                                                                        Row(
+                                                                          children: [
+                                                                            Text("${m}", style: const TextStyle(fontSize: 12),),
+                                                                            Text("~${numformat.format(malere)}%", style:  TextStyle(fontSize: 12,color: Colors.cyan[800]),),
 
-                                                                        ],
-                                                                      )
+                                                                          ],
+                                                                        )
 
-                                                                    ],
-                                                                  ),
-                                                                ],
+                                                                      ],
+                                                                    ),
+                                                                  ],
+                                                                ),
                                                               ),
                                                             ),
                                                           ),
