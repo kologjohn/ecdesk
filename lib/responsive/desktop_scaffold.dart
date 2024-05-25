@@ -1,30 +1,21 @@
 import 'dart:ui';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:ecdesk/forms/login_form.dart';
 import 'package:ecdesk/idcard.dart';
 import 'package:ecdesk/route/routes.dart';
-import 'package:ecdesk/widgets/cons_card.dart';
-import 'package:ecdesk/widgets/error_page.dart';
+import 'package:ecdesk/widgets/qrcode_scanner.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_session_manager/flutter_session_manager.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:ecdesk/database/databases.dart';
-import 'package:ecdesk/drawer.dart';
-import 'package:ecdesk/widgets/card_info.dart';
 import 'package:ecdesk/widgets/ff.dart';
-import 'package:ecdesk/widgets/tile_info.dart';
-
 import '../database/regmodel.dart';
-import '../widgets/box_card.dart';
-import '../widgets/qrcode_scanner.dart';
 import '../widgets/sidebar_items.dart';
 import '../widgets/totalvoterscard.dart';
-import '../widgets/wrap_items.dart';
 
 
 class DesktopScaffold extends StatefulWidget {
@@ -76,7 +67,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
         double screenWidth = screenSize.width;
         double screenHeight = screenSize.height;
         double cw=(screenWidth)*0.438;
-        double scw=(screenWidth)*0.235;
+        double scw=(screenWidth)*0.218;
 
         if(screenWidth <800){
           cw = screenWidth;
@@ -91,7 +82,8 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
         return Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
-            toolbarHeight: 100,
+              centerTitle: true,
+            toolbarHeight: 80,
             backgroundColor: Colors.green[900],
             title: Row(
               children: [
@@ -190,13 +182,23 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                   child: Container(
                                                     width: scw*0.9,
                                                     child:  TextField(
+
                                                       style: TextStyle(color:Colors.white),
                                                       controller: searchcontroller,
                                                       onChanged: (text){
                                                         value.desktoshow(text);
                                                         value.seearchifo(text);
                                                       },
-                                                      decoration: const InputDecoration(
+                                                      decoration: InputDecoration(
+                                                        suffixIcon: InkWell(
+                                                            onTap: (){
+                                                              Navigator.push(
+                                                                context,
+                                                                MaterialPageRoute(builder: (context) => const QRViewExample()),
+                                                              );
+                                                            },
+                                                            child: Icon(Icons.qr_code)),
+                                                        suffixIconColor: Colors.white,
                                                         hintText: 'Search...',
                                                         hintStyle: TextStyle(color: Colors.white54, fontSize: 12),
                                                         prefixIcon: Icon(Icons.search),
@@ -204,6 +206,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                         fillColor: Colors.blue,
                                                         filled: false,
                                                         border: InputBorder.none,
+
                                                       ),
                                                     ),
                                                   ),
@@ -213,15 +216,6 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                           ],
                                         ),
                                       ),
-                                      InkWell(
-                                        onTap: (){
-                                          print("object");
-                                          Navigator.pushNamed(context, Routes.qrcode);
-                                        },
-                                          child: Icon(
-                                      Icons.qr_code_2, color: Colors.white,
-                                          )
-                                      )
                                     ],
                                   ),
                                 ),
@@ -246,6 +240,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                     width: isSidebarExpanded ? 200 : 70,
                     color: Colors.green[900],
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         IconButton(
                           icon: Icon(
@@ -265,7 +260,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                               ),
                               SidebarItem(
                                 icon: Icons.person,
-                                text: 'Profile',
+                                text: 'Add User',
                                 isExpanded: isSidebarExpanded,
                                 onTap: () {  },
                               ),
@@ -277,6 +272,29 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                               ),
                             ],
                           ),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(left: 8.0, right: 8.0),
+                          child: Divider(),
+                        ),
+                        SidebarItem(
+                          icon: Icons.login,
+                          text: 'Log Out',
+                          isExpanded: isSidebarExpanded,
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => LoginForm()),
+                            );
+                            //Navigator.pushNamed(context, Routes.login);
+                            print("You logged out");
+                          },
+                        ),
+                        SidebarItem(
+                          icon: Icons.settings,
+                          text: 'Settings',
+                          isExpanded: isSidebarExpanded,
+                          onTap: () {  },
                         ),
                       ],
                     ),
@@ -570,7 +588,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Container(
-                                      width: screenWidth*0.95,
+                                      width: screenWidth*0.88,
                                       decoration: BoxDecoration(
                                         borderRadius: const BorderRadius.all(Radius.circular(8)),
                                         color: Colors.green[900]?.withOpacity(0.2),
@@ -599,49 +617,52 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                       children: [
                                                         Padding(
                                                           padding: const EdgeInsets.all(2.0),
-                                                          child: Container(
-                                                            height: 100,
-                                                            width: 250,
-                                                            decoration: BoxDecoration(
-                                                                color: Colors.green[900]?.withOpacity(0.2),
-                                                                borderRadius: const BorderRadius.all(Radius.circular(8))
-                                                            ),
-                                                            child: Padding(
-                                                              padding: const EdgeInsets.all(8.0),
-                                                              child: Column(
-                                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                                children: [
-                                                                  FittedBox(fit:BoxFit.contain,child: Text(constituency, style: const TextStyle(fontSize: 14,fontWeight: FontWeight.bold),)),
-                                                                  Row(
-                                                                    children: [
-                                                                      const Icon(Icons.person,color: Colors.black12,),
-                                                                      const Text("Female: "),
-                                                                      Row(
-                                                                        children: [
-                                                                          Text(numformat.format(f), style: const TextStyle(fontSize: 12),),
-                                                                          Text("~${numformat.format(femalere)}%", style:  TextStyle(fontSize: 12,color: Colors.cyan[800]),),
+                                                          child: FittedBox(
+                                                            fit: BoxFit.contain,
+                                                            child: Container(
+                                                              height: 100,
+                                                              width: 250,
+                                                              decoration: BoxDecoration(
+                                                                  color: Colors.green[900]?.withOpacity(0.2),
+                                                                  borderRadius: const BorderRadius.all(Radius.circular(8))
+                                                              ),
+                                                              child: Padding(
+                                                                padding: const EdgeInsets.all(8.0),
+                                                                child: Column(
+                                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                                  children: [
+                                                                    FittedBox(fit:BoxFit.contain,child: Text(constituency, style: const TextStyle(fontSize: 14,fontWeight: FontWeight.bold),)),
+                                                                    Row(
+                                                                      children: [
+                                                                        const Icon(Icons.person,color: Colors.black12,),
+                                                                        const Text("Female: "),
+                                                                        Row(
+                                                                          children: [
+                                                                            Text(numformat.format(f), style: const TextStyle(fontSize: 12),),
+                                                                            Text("~${numformat.format(femalere)}%", style:  TextStyle(fontSize: 12,color: Colors.cyan[800]),),
 
-                                                                        ],
-                                                                      ),
+                                                                          ],
+                                                                        ),
 
-                                                                      // Text("${f}~${numformat.format(femalere)}%", style: const TextStyle(fontSize: 12),),
-                                                                    ],
-                                                                  ),
-                                                                  Row(
-                                                                    children: [
-                                                                      const Icon(Icons.person,color: Colors.black12),
-                                                                      const Text("Male: "),
-                                                                      Row(
-                                                                        children: [
-                                                                          Text("${m}", style: const TextStyle(fontSize: 12),),
-                                                                          Text("~${numformat.format(malere)}%", style:  TextStyle(fontSize: 12,color: Colors.cyan[800]),),
+                                                                        // Text("${f}~${numformat.format(femalere)}%", style: const TextStyle(fontSize: 12),),
+                                                                      ],
+                                                                    ),
+                                                                    Row(
+                                                                      children: [
+                                                                        const Icon(Icons.person,color: Colors.black12),
+                                                                        const Text("Male: "),
+                                                                        Row(
+                                                                          children: [
+                                                                            Text("${m}", style: const TextStyle(fontSize: 12),),
+                                                                            Text("~${numformat.format(malere)}%", style:  TextStyle(fontSize: 12,color: Colors.cyan[800]),),
 
-                                                                        ],
-                                                                      )
+                                                                          ],
+                                                                        )
 
-                                                                    ],
-                                                                  ),
-                                                                ],
+                                                                      ],
+                                                                    ),
+                                                                  ],
+                                                                ),
                                                               ),
                                                             ),
                                                           ),
@@ -685,56 +706,65 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                             color: Colors.green[900]?.withOpacity(0.2),
                                                             borderRadius: const BorderRadius.all(Radius.circular(8))
                                                         ),
-                                                        child: Column(
-                                                          mainAxisAlignment: MainAxisAlignment.center,
-                                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                                          children: [
-                                                            Row(
-                                                              mainAxisAlignment: MainAxisAlignment.center,
-                                                              children: [
-                                                                Container(
-                                                                  height: 40,
-                                                                  width: 40,
-                                                                  decoration: BoxDecoration(
-                                                                    shape: BoxShape.circle,
-                                                                    color: Colors.blue[900],
-                                                                  ),
-                                                                ),
-                                                                const SizedBox(width: 30),
-                                                                const Column(
-                                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                        child: Padding(
+                                                          padding: const EdgeInsets.all(8.0),
+                                                          child: Column(
+                                                            mainAxisAlignment: MainAxisAlignment.center,
+                                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                                            children: [
+                                                              FittedBox(
+                                                                fit: BoxFit.contain,
+                                                                child: Row(
+                                                                  mainAxisAlignment: MainAxisAlignment.center,
                                                                   children: [
-                                                                    Text("EC Sex Errors Statistics"),
-                                                                    Text("12,890"),
-                                                                    Text("23%"),
+                                                                    Container(
+                                                                      height: 40,
+                                                                      width: 40,
+                                                                      decoration: BoxDecoration(
+                                                                        shape: BoxShape.circle,
+                                                                        color: Colors.purple[900],
+                                                                      ),
+                                                                    ),
+                                                                    const SizedBox(width: 30),
+                                                                    const Column(
+                                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                                      children: [
+                                                                        Text("EC Sex Errors Statistics"),
+                                                                        Text("12,890"),
+                                                                        Text("23%"),
+                                                                      ],
+                                                                    )
                                                                   ],
-                                                                )
-                                                              ],
-                                                            ),
-                                                            const SizedBox(height: 20),
-                                                            Row(
-                                                              mainAxisAlignment: MainAxisAlignment.center,
-                                                              children: [
-                                                                Container(
-                                                                  height: 40,
-                                                                  width: 40,
-                                                                  decoration: BoxDecoration(
-                                                                    shape: BoxShape.circle,
-                                                                    color: Colors.green[900],
-                                                                  ),
                                                                 ),
-                                                                const SizedBox(width: 30),
-                                                                const Column(
-                                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                              ),
+                                                              const SizedBox(height: 20),
+                                                              FittedBox(
+                                                                fit: BoxFit.contain,
+                                                                child: Row(
+                                                                  mainAxisAlignment: MainAxisAlignment.center,
                                                                   children: [
-                                                                    Text("EC Age Errors Statistics"),
-                                                                    Text("12,890"),
-                                                                    Text("23%"),
+                                                                    Container(
+                                                                      height: 40,
+                                                                      width: 40,
+                                                                      decoration: BoxDecoration(
+                                                                        shape: BoxShape.circle,
+                                                                        color: Colors.orange[900],
+                                                                      ),
+                                                                    ),
+                                                                    const SizedBox(width: 30),
+                                                                    const Column(
+                                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                                      children: [
+                                                                        Text("EC Age Errors Statistics"),
+                                                                        Text("12,890"),
+                                                                        Text("23%"),
+                                                                      ],
+                                                                    )
                                                                   ],
-                                                                )
-                                                              ],
-                                                            ),
-                                                          ],
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
                                                         ),
                                                       ),
                                                       Container(
@@ -973,7 +1003,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                                 borderRadius: const BorderRadius.all(Radius.circular(8))
                                                             ),
                                                             child: Column(
-                                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                                              crossAxisAlignment: CrossAxisAlignment.center,
                                                               children: [
                                                                 const Text(
                                                                   "Sex Distribution Chart",
@@ -1077,56 +1107,65 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                             color: Colors.green[900]?.withOpacity(0.2),
                                                             borderRadius: const BorderRadius.all(Radius.circular(8))
                                                         ),
-                                                        child: Column(
-                                                          mainAxisAlignment: MainAxisAlignment.center,
-                                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                                          children: [
-                                                            Row(
-                                                              mainAxisAlignment: MainAxisAlignment.center,
-                                                              children: [
-                                                                Container(
-                                                                  height: 40,
-                                                                  width: 40,
-                                                                  decoration: BoxDecoration(
-                                                                    shape: BoxShape.circle,
-                                                                    color: Colors.blue[900],
-                                                                  ),
-                                                                ),
-                                                                const SizedBox(width: 30),
-                                                                const Column(
-                                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                        child: Padding(
+                                                          padding: const EdgeInsets.all(8.0),
+                                                          child: Column(
+                                                            mainAxisAlignment: MainAxisAlignment.center,
+                                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                                            children: [
+                                                              FittedBox(
+                                                                fit: BoxFit.contain,
+                                                                child: Row(
+                                                                  mainAxisAlignment: MainAxisAlignment.center,
                                                                   children: [
-                                                                    Text("EC Sex Errors Statistics"),
-                                                                    Text("12,890"),
-                                                                    Text("23%"),
+                                                                    Container(
+                                                                      height: 40,
+                                                                      width: 40,
+                                                                      decoration: BoxDecoration(
+                                                                        shape: BoxShape.circle,
+                                                                        color: Colors.blue[900],
+                                                                      ),
+                                                                    ),
+                                                                    const SizedBox(width: 30),
+                                                                    const Column(
+                                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                                      children: [
+                                                                        Text("EC Sex Errors Statistics"),
+                                                                        Text("12,890"),
+                                                                        Text("23%"),
+                                                                      ],
+                                                                    )
                                                                   ],
-                                                                )
-                                                              ],
-                                                            ),
-                                                            const SizedBox(height: 20),
-                                                            Row(
-                                                              mainAxisAlignment: MainAxisAlignment.center,
-                                                              children: [
-                                                                Container(
-                                                                  height: 40,
-                                                                  width: 40,
-                                                                  decoration: BoxDecoration(
-                                                                    shape: BoxShape.circle,
-                                                                    color: Colors.green[900],
-                                                                  ),
                                                                 ),
-                                                                const SizedBox(width: 30),
-                                                                const Column(
-                                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                              ),
+                                                              const SizedBox(height: 20),
+                                                              FittedBox(
+                                                                fit: BoxFit.contain,
+                                                                child: Row(
+                                                                  mainAxisAlignment: MainAxisAlignment.center,
                                                                   children: [
-                                                                    Text("EC Age Errors Statistics"),
-                                                                    Text("12,890"),
-                                                                    Text("23%"),
+                                                                    Container(
+                                                                      height: 40,
+                                                                      width: 40,
+                                                                      decoration: BoxDecoration(
+                                                                        shape: BoxShape.circle,
+                                                                        color: Colors.green[900],
+                                                                      ),
+                                                                    ),
+                                                                    const SizedBox(width: 30),
+                                                                    const Column(
+                                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                                      children: [
+                                                                        Text("EC Age Errors Statistics"),
+                                                                        Text("12,890"),
+                                                                        Text("23%"),
+                                                                      ],
+                                                                    )
                                                                   ],
-                                                                )
-                                                              ],
-                                                            ),
-                                                          ],
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
                                                         ),
                                                       ),
                                                     ],

@@ -28,6 +28,7 @@ class Assets {
   static const String imagesProfile = 'assets/images/profile.jpg';
   static const String imagesQRcode = 'assets/images/QRcode.png';
   static const String imagesTotal = 'assets/images/total.svg';
+  static const String svgsAdduser = 'assets/svgs/adduser.svg';
   static const String svgsFemale = 'assets/svgs/female.svg';
   static const String svgsMale = 'assets/svgs/male.svg';
   static const String svgsMap = 'assets/svgs/map.svg';
