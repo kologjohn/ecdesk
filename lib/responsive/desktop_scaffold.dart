@@ -50,8 +50,8 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
   String? _selectedRegion;
   List<String> _regions = ['Upper East', 'Upper West', 'North East', 'Ahafo', 'Bono', 'Northern', 'Oti'];
 
-
   bool isSidebarExpanded = true;
+
 
   void toggleSidebar() {
     setState(() {
@@ -63,6 +63,9 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
   Widget build(BuildContext context) {
     return  Consumer<FirebaseAccounts>(
       builder: (BuildContext context, FirebaseAccounts value, Widget? child) {
+       if(!value.auth.isSignedIn){
+          return LoginForm();
+       }
         Size screenSize = MediaQuery.of(context).size;
         double screenWidth = screenSize.width;
         double screenHeight = screenSize.height;
@@ -282,10 +285,11 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                           text: 'Log Out',
                           isExpanded: isSidebarExpanded,
                           onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => LoginForm()),
-                            );
+                            value.logout(context);
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(builder: (context) => LoginForm()),
+                            // );
                             //Navigator.pushNamed(context, Routes.login);
                             print("You logged out");
                           },

@@ -1,6 +1,9 @@
 import 'dart:convert';
+import 'package:ecdesk/constant.dart';
 import 'package:ecdesk/database/regmodel.dart';
 import 'package:ecdesk/responsive/desktop_scaffold.dart';
+import 'package:ecdesk/route/routes.dart';
+import 'package:firedart/auth/exceptions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -57,28 +60,61 @@ class FirebaseAccounts extends ChangeNotifier{
    notifyListeners();
  }
 
+  initial(BuildContext context){
+     if(!auth.isSignedIn){
+       Navigator.pushReplacementNamed(context, Routes.login);
+     }
+     else
+       {
+         Navigator.pushReplacementNamed(context, Routes.dashboard);
 
-  login()async{
+       }
+  }
+  login(String phone,String password,BuildContext ctx)async{
     try{
       if(auth.isSignedIn)
         {
-          print("login already");
+          error="login already";
         }
       else
         {
-          final ff=await auth.signIn("data@party.co","123456");
+           await auth.signIn("$phone$domain", password);
           if(auth.isSignedIn){
-            print("Login successfully");
+            Navigator.pushReplacementNamed(ctx, Routes.dashboard);
+            //Navigator.of(context).pushReplacementNamed('/login');
+            error="";
     }
         }
-    }catch(e){
+    }on AuthException catch(e){
+      error=e.message;
+    }
+  notifyListeners();
+  }
+  logout(BuildContext ctx)async{
+    try{
+        auth.signOut();
+       Navigator.pushReplacementNamed(ctx, Routes.login);
+        } catch(e){
       print(e);
     }
 
   }
 
-   Future<AgereResponse> fetchAgeGroupData() async {
-    await login();
+  createaccount(String phone,String password,String pscode,String constituency,String region)async{
+   try{
+       final ff=await auth.signUp("$phone$domain", password);
+       if(auth.isSignedIn){
+         print("Login successfully");
+     }
+   }on Exception catch(e){
+     print(e);
+   }
+
+ }
+
+
+ Future<AgereResponse> fetchAgeGroupData() async {
+  //  await login();
     if(auth.isSignedIn)
       {
         String? email = "";
@@ -116,7 +152,7 @@ class FirebaseAccounts extends ChangeNotifier{
  }
 
    Future<RegionalSummaryResponse> fetchRegionalSummary() async {
-    await login();
+    //await login();
      if(auth.isSignedIn)
        {
          String? email = "";
@@ -153,7 +189,6 @@ class FirebaseAccounts extends ChangeNotifier{
          }}
          else
            {
-
              error="authenticating...";
              notifyListeners();
              throw Exception('Error Loading data');
@@ -162,7 +197,7 @@ class FirebaseAccounts extends ChangeNotifier{
 
  }
    Future<SearchSummaryResponse> fetchSearch(String searchTxt) async {
-    await login();
+   // await login();
      if(auth.isSignedIn)
        {
          String? email = "";
@@ -197,11 +232,9 @@ class FirebaseAccounts extends ChangeNotifier{
          }}
          else
            {
-
              error="authenticating...";
              notifyListeners();
              throw Exception('Error Loading data');
-
            }
 
  }
