@@ -1,4 +1,7 @@
 import 'dart:convert';
+import 'dart:io';
+import 'package:ecdesk/forms/login_form.dart';
+import 'package:ecdesk/route/routes.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -11,65 +14,39 @@ import 'package:firedart/firedart.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  String keys="";
-  if (kIsWeb)
-    {
-      keys="AIzaSyBSVeEDy4oZGkqTY7pYWvsJz6Cm-O1HPGo";
-    }else{
-    keys="AIzaSyDyIm_8-e8yrWCZjf_5dy6WevtuL9a6Gfk";
-  }
+  String keys="AIzaSyBSVeEDy4oZGkqTY7pYWvsJz6Cm-O1HPGo";
+  String logintxt;
+
   FirebaseAuth.initialize(keys, VolatileStore());
   Firestore.initialize('ecdata-eb3b2');
-  //await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  // if(kIsWeb){
-  //   BrowserContextMenu.disableContextMenu();
-  // }
-  //
-  // var headers = {
-  //   'name': '50',
-  //   'age': '50',
-  //   'Content-Type': 'application/json',
-  //   'Authorization': 'Bearer sk_live_bc5f5f79fb663941f1783271a3549e40abf31f79'
-  // };
-  // var request = http.Request('POST', Uri.parse('http://192.168.8.119:8700/postme'));
-  // request.body = json.encode({"name": "Abi", "age": 30});
-  // request.headers.addAll(headers);
-  //
-  // http.StreamedResponse response = await request.send();
-  //
-  // if (response.statusCode == 200) {
-  //   print(await response.stream.bytesToString());
-  // }
-  // else {
-  //   print(response.reasonPhrase);
-  // }
-  runApp(const MyApp());
-}
-
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    FirebaseAccounts().login();
-    super.initState();
+  if(FirebaseAccounts().auth.isSignedIn)
+  {
+    logintxt=Routes.dashboard;
   }
+  else
+  {
+    logintxt=Routes.login;
+  }
+  runApp(MyApp(flogin: logintxt,));
+}
+
+class MyApp extends StatelessWidget {
+  String flogin;
+    MyApp({super.key,required this.flogin});
+
   @override
   Widget build(BuildContext context) {
 
     return ChangeNotifierProvider(
       lazy: false,
       create: (BuildContext context)=>FirebaseAccounts(),
-      child: const MaterialApp(
+      child:  MaterialApp(
+        initialRoute: flogin,
+        routes: pages,
         title: 'EC-DATA CENTER',
         debugShowCheckedModeBanner: false,
-        home: ResponsiveLayout(mobileScaffold: DesktopScaffold(), tabletScaffold: DesktopScaffold(), desktopScaffold: DesktopScaffold()),
+
+        home:LoginForm() ,//ResponsiveLayout(mobileScaffold: DesktopScaffold(), tabletScaffold: DesktopScaffold(), desktopScaffold: DesktopScaffold()),
       ),
     );
   }

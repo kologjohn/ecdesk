@@ -50,8 +50,8 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
   String? _selectedRegion;
   List<String> _regions = ['Upper East', 'Upper West', 'North East', 'Ahafo', 'Bono', 'Northern', 'Oti'];
 
+  bool isSidebarExpanded = false;
 
-  bool isSidebarExpanded = true;
 
   void toggleSidebar() {
     setState(() {
@@ -63,6 +63,9 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
   Widget build(BuildContext context) {
     return  Consumer<FirebaseAccounts>(
       builder: (BuildContext context, FirebaseAccounts value, Widget? child) {
+       if(!value.auth.isSignedIn){
+          return LoginForm();
+       }
         Size screenSize = MediaQuery.of(context).size;
         double screenWidth = screenSize.width;
         double screenHeight = screenSize.height;
@@ -257,18 +260,21 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                 text: 'Home',
                                 isExpanded: isSidebarExpanded,
                                 onTap: () {  },
+                                //svgPath: 'assets/svgs/home2.svg',
                               ),
                               SidebarItem(
                                 icon: Icons.person,
                                 text: 'Add User',
                                 isExpanded: isSidebarExpanded,
                                 onTap: () {  },
+                                //svgPath: 'assets/svgs/adduser.svg',
                               ),
                               SidebarItem(
                                 icon: Icons.settings,
                                 text: 'Settings',
                                 isExpanded: isSidebarExpanded,
                                 onTap: () {  },
+                                //svgPath: 'assets/svgs/sett.svg',
                               ),
                             ],
                           ),
@@ -278,23 +284,27 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                           child: Divider(),
                         ),
                         SidebarItem(
-                          icon: Icons.login,
+                          icon: Icons.power_settings_new,
                           text: 'Log Out',
                           isExpanded: isSidebarExpanded,
                           onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => LoginForm()),
-                            );
+                            value.logout(context);
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(builder: (context) => LoginForm()),
+                            // );
                             //Navigator.pushNamed(context, Routes.login);
                             print("You logged out");
                           },
+                          //svgPath: 'assets/svgs/logout.svg',
                         ),
+
                         SidebarItem(
                           icon: Icons.settings,
                           text: 'Settings',
                           isExpanded: isSidebarExpanded,
                           onTap: () {  },
+                          //svgPath: 'assets/svgs/sett.svg',
                         ),
                       ],
                     ),

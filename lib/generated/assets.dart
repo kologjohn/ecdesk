@@ -30,8 +30,15 @@ class Assets {
   static const String imagesTotal = 'assets/images/total.svg';
   static const String svgsAdduser = 'assets/svgs/adduser.svg';
   static const String svgsFemale = 'assets/svgs/female.svg';
+  static const String svgsHome = 'assets/svgs/home.svg';
+  static const String svgsHome1 = 'assets/svgs/home1.svg';
+  static const String svgsHome2 = 'assets/svgs/home2.svg';
+  static const String svgsLogout = 'assets/svgs/logout.svg';
   static const String svgsMale = 'assets/svgs/male.svg';
   static const String svgsMap = 'assets/svgs/map.svg';
   static const String svgsProfile = 'assets/svgs/profile.svg';
+  static const String svgsSet = 'assets/svgs/set.svg';
+  static const String svgsSett = 'assets/svgs/sett.svg';
+  static const String svgsSettings = 'assets/svgs/settings.svg';
 
 }
