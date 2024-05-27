@@ -1,0 +1,59 @@
+{
+  "hosting": {
+    "source": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "frameworksBackend": {
+      "region": "us-central1"
+    }
+  },
+  "remoteconfig": {
+    "template": "config"
+  },
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "ecdata-eb3b2",
+          "appId": "1:348127732306:android:f828ddcc41e6853bccf58b",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "ecdata-eb3b2",
+          "configurations": {
+            "android": "1:348127732306:android:f828ddcc41e6853bccf58b",
+            "ios": "1:348127732306:ios:99269b0ff4cf58eaccf58b",
+            "macos": "1:348127732306:ios:99269b0ff4cf58eaccf58b",
+            "web": "1:348127732306:web:0773589960a1656accf58b",
+            "windows": "1:348127732306:web:2cc863c2465d82d2ccf58b"
+          }
+        }
+      }
+    }
+  },
+  "storage": {
+    "rules": "storage.rules"
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log",
+        "*.local"
+      ]
+    }
+  ]
+}

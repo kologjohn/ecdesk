@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "348127732306",
+    "project_id": "ecdata-eb3b2",
+    "storage_bucket": "ecdata-eb3b2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:348127732306:android:5dc2e2350dd27ca7ccf58b",
+        "android_client_info": {
+          "package_name": "com.ndc.ndcdata"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKvhCtwOSBAwjQ2JYutHSKwjBBkDTRQU4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

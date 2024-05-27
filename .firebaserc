@@ -1,0 +1,10 @@
+{
+  "projects": {
+    "staging": "ecdata-eb3b2",
+    "default": "ecdata-eb3b2",
+    "home": "ecdata-eb3b2"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
+}
