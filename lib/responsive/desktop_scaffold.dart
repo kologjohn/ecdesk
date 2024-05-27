@@ -383,7 +383,13 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                               //femaleline.add(FlSpot(double.parse("$i"), double.parse("$femaleline")));
                                                               //regionalcode.add(code);
                                                               // totals.add(total);
-                                                              carddata.add(totalvoter(mycolors: colors[i], regionalcode: code, numformat1: numformat1, totals: total, totalper: "$per", regionName: regionnames,),);
+                                                              carddata.add(
+                                                                InkWell(
+                                                                  onTap: (){
+                                                                    print(regionnames);
+                                                                  },
+                                                                    child: totalvoter(mycolors: colors[i], regionalcode: code, numformat1: numformat1, totals: total, totalper: "$per", regionName: regionnames,)),
+                                                              );
                                                             }
 
                                                             return  Container(
@@ -398,7 +404,11 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                                 child: Column(
                                                                   mainAxisAlignment: MainAxisAlignment.end,
                                                                   children: [
-                                                                    const Text("Regional Summary", style: TextStyle(color: Colors.black),),
+                                                                    const Text("Regional Summary", style: TextStyle(color: Colors.black,fontSize: 16,fontWeight: FontWeight.w100),),
+                                                                    const Padding(
+                                                                      padding: EdgeInsets.all(8.0),
+                                                                      child: Divider(thickness: 1,color: Colors.black12,),
+                                                                    ),
                                                                     Row(
                                                                       mainAxisAlignment: MainAxisAlignment.center,
                                                                       //crossAxisAlignment: CrossAxisAlignment.end,

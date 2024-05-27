@@ -74,10 +74,11 @@ class FirebaseAccounts extends ChangeNotifier{
       if(auth.currentUser!=null)
         {
           error="login already";
+          Navigator.pushReplacementNamed(ctx, Routes.dashboard);
         }
       else
         {
-           await auth.createUserWithEmailAndPassword(email: "$phone$domain", password: password);
+           await auth.signInWithEmailAndPassword(email: "$phone$domain", password: password);
           if(auth.currentUser!=null){
 
             Navigator.pushReplacementNamed(ctx, Routes.dashboard);
@@ -211,7 +212,7 @@ class FirebaseAccounts extends ChangeNotifier{
            'Content-Type': 'application/json',
            'Authorization': 'Bearer $token',
          };
-         var request = http.Request('POST', Uri.parse('https://us-central1-ecdata-eb3b2.cloudfunctions.net/search'));
+         var request = http.Request('POST', Uri.parse('https://us-central1-ecdata-eb3b2.cloudfunctions.net/psearch'));
          request.body = json.encode({
            "data": {
              "q": searchTxt,
@@ -225,7 +226,7 @@ class FirebaseAccounts extends ChangeNotifier{
            final Map parsed = json.decode(resdata);
            final  finaldata = parsed['result'];
            final a=jsonEncode(finaldata);
-          // print(a);
+           print(a);
 
            return SearchSummaryResponse.fromJson(jsonDecode(a));
          } else {
