@@ -26,6 +26,7 @@ class _DetailsInfoState extends State<DetailsInfo> {
   // String name="";
 
   List<Widget> show=[];
+  List<String> names=[];
   List<Widget> myimage=[];
   List<Widget> ptimage=[];
   List<Widget> ages=[];
@@ -40,14 +41,35 @@ class _DetailsInfoState extends State<DetailsInfo> {
 
   dynamic groupValue="Yes";
   bool isVisible = true;
+
+  List<String> filteredItems=[];
+  TextEditingController searchController = TextEditingController();
+
+
   @override
   void initState() {
-    // TODO: implement initState
-      //datalist();
-    //FirebaseAccounts().getSessionAccess();
-    print(FirebaseAccounts().region_access);
     super.initState();
+    filteredItems = names;
+    searchController.addListener(() {
+      filterItems();
+    });
   }
+
+  void filterItems() {
+    List<String> tempItems = [];
+    if (searchController.text.isNotEmpty) {
+      tempItems = names
+          .where((item) =>
+          item.toLowerCase().contains(searchController.text.toLowerCase()))
+          .toList();
+    } else {
+      tempItems = names;
+    }
+    setState(() {
+      filteredItems = tempItems;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -55,14 +77,18 @@ class _DetailsInfoState extends State<DetailsInfo> {
     double itemWidth = 280.0;
     // Calculate the crossAxisCount dynamically
     int crossAxisCount = (screenWidth / itemWidth).floor();
+    if(crossAxisCount<=1){
+      crossAxisCount=1;
+    }
     return Consumer<FirebaseAccounts>(builder: (BuildContext context, FirebaseAccounts fbaccount, Widget? child) {
       //fbaccount.getSessionAccess();
       region=fbaccount.region_access;
 
       return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.black,
+          centerTitle: false,
           toolbarHeight: 100,
+          backgroundColor: Colors.green[900],
           title: Row(
             children: [
               Expanded(
@@ -70,35 +96,47 @@ class _DetailsInfoState extends State<DetailsInfo> {
                     child: Column(
                       children: [
                         Wrap(
+                          spacing: 5,
+                          runSpacing: 5,
                           children: [
-                            Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                "$region VOTER'S PHOTO ALBUM",
-                                style: Global.normalsize,
+                            FittedBox(
+                              fit: BoxFit.contain,
+                              child: Container(
+                                width: 600,
+                                child: Text(
+                                  "$region VOTER'S PHOTO ALBUM",
+                                  style: Global.normalsize,
+                                ),
                               ),
                             ),
-                            SizedBox(
-                              width: 400,
-                              child: Padding(
-                                padding: const EdgeInsets.only(right: 8.0, top: 8.0, bottom: 8.0),
-                                child: TextField(
-                                  style: const TextStyle(color: Colors.white),
-                                  decoration: InputDecoration(
-                                      prefixIcon: const Icon(Icons.search),
-                                      prefixIconColor: Colors.white54,
-                                      hintText: "Search...",
-                                      hintStyle: const TextStyle(color: Colors.white54),
-                                      focusedBorder: const OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: Colors.white,
+                            FittedBox(
+                              fit: BoxFit.contain,
+                              child: Container(
+                                width: 500,
+                                child: SizedBox(
+                                  width: 400,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(right: 8.0, top: 8.0, bottom: 8.0),
+                                    child: TextField(
+                                      style: const TextStyle(color: Colors.white),
+                                      controller: searchController,
+                                      decoration: InputDecoration(
+                                          prefixIcon: const Icon(Icons.search),
+                                          prefixIconColor: Colors.white54,
+                                          hintText: "Search...",
+                                          hintStyle: const TextStyle(color: Colors.white54),
+                                          focusedBorder: const OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Colors.white,
+                                              )
+                                          ),
+                                          enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.grey.shade600
+                                              )
                                           )
                                       ),
-                                      enabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Colors.grey.shade600
-                                          )
-                                      )
+                                    ),
                                   ),
                                 ),
                               ),
@@ -111,7 +149,60 @@ class _DetailsInfoState extends State<DetailsInfo> {
               )
             ],
           ),
+
         ),
+        // appBar: AppBar(
+        //   backgroundColor: Colors.black,
+        //   toolbarHeight: 100,
+        //   title: Row(
+        //     children: [
+        //       Expanded(
+        //           child: Container(
+        //             child: Column(
+        //               children: [
+        //                 Wrap(
+        //                   children: [
+        //                     Padding(
+        //                       padding: EdgeInsets.all(8.0),
+        //                       child: Text(
+        //                         "$region VOTER'S PHOTO ALBUM",
+        //                         style: Global.normalsize,
+        //                       ),
+        //                     ),
+        //                     SizedBox(
+        //                       width: 400,
+        //                       child: Padding(
+        //                         padding: const EdgeInsets.only(right: 8.0, top: 8.0, bottom: 8.0),
+        //                         child: TextField(
+        //                           style: const TextStyle(color: Colors.white),
+        //                           decoration: InputDecoration(
+        //                               prefixIcon: const Icon(Icons.search),
+        //                               prefixIconColor: Colors.white54,
+        //                               hintText: "Search...",
+        //                               hintStyle: const TextStyle(color: Colors.white54),
+        //                               focusedBorder: const OutlineInputBorder(
+        //                                   borderSide: BorderSide(
+        //                                     color: Colors.white,
+        //                                   )
+        //                               ),
+        //                               enabledBorder: OutlineInputBorder(
+        //                                   borderSide: BorderSide(
+        //                                       color: Colors.grey.shade600
+        //                                   )
+        //                               )
+        //                           ),
+        //                         ),
+        //                       ),
+        //                     ),
+        //                   ],
+        //                 )
+        //               ],
+        //             ),
+        //           )
+        //       )
+        //     ],
+        //   ),
+        // ),
         body: Column(
           children: [
             // Padding(
@@ -186,6 +277,7 @@ class _DetailsInfoState extends State<DetailsInfo> {
                       voteidwidget.add(Text("Voter ID: $voterid_txt", style: Global.smallsize));
                       member.add(member_txt);
                       voteridlist.add(snapshot.data!.docs[i]['voterid']);
+                      names.add(name_txt);
 
                       if (isVisible==snapshot.data!.docs[i]['voterid']){
 
@@ -202,7 +294,7 @@ class _DetailsInfoState extends State<DetailsInfo> {
                   }
                   return Expanded(
                     child: GridView.builder(
-                      //itemCount: itemcount,
+                      itemCount: itemcount,
                       gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: (crossAxisCount).ceil()),
                       itemBuilder: (context, index)
                       {
@@ -331,7 +423,7 @@ class _DetailsInfoState extends State<DetailsInfo> {
                                       elevation: 1,
                                       child: Container(
                                         decoration: BoxDecoration(
-                                          color: Colors.green[900],
+                                          color: Colors.red[900],
                                           borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(10))
                                         ),
                                         child:  Padding(

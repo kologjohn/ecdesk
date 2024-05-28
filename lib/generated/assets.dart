@@ -4,6 +4,7 @@ class Assets {
 
   static const String assetsImagesNdc = 'assets/images/ndc.png';
   static const String assetsImagesNpp = 'assets/images/npp.png';
+  static const String assetsSvgsMale = 'assets/svgs/male.svg';
   static const String images0 = 'assets/images/0.png';
   static const String images1567500079 = 'assets/images/1567500079.png';
   static const String imagesCoA = 'assets/images/CoA.png';
@@ -11,7 +12,6 @@ class Assets {
   static const String imagesFloating = 'assets/images/floating.png';
   static const String imagesMAHAMA = 'assets/images/MAHAMA.jpg';
   static const String imagesMahama1 = 'assets/images/Mahama1.jpg';
-  static const String imagesMale = 'assets/images/male.png';
   static const String imagesMap = 'assets/images/map.svg';
   static const String imagesNDCL = 'assets/images/NDC-L.png';
   static const String imagesNdc = 'assets/images/ndc.jpg';
@@ -23,18 +23,20 @@ class Assets {
   static const String imagesNdcbg2 = 'assets/images/ndcbg2.jpeg';
   static const String imagesNdcbg3 = 'assets/images/ndcbg3.jpg';
   static const String imagesNpp = 'assets/images/npp.jpg';
+  static const String imagesNull = 'assets/images/null.png';
   static const String imagesOthers = 'assets/images/others.png';
   static const String imagesPassport = 'assets/images/passport.png';
   static const String imagesProfile = 'assets/images/profile.jpg';
   static const String imagesQRcode = 'assets/images/QRcode.png';
   static const String imagesTotal = 'assets/images/total.svg';
   static const String svgsAdduser = 'assets/svgs/adduser.svg';
+  static const String svgsBallot = 'assets/svgs/ballot.svg';
   static const String svgsFemale = 'assets/svgs/female.svg';
   static const String svgsHome = 'assets/svgs/home.svg';
   static const String svgsHome1 = 'assets/svgs/home1.svg';
   static const String svgsHome2 = 'assets/svgs/home2.svg';
   static const String svgsLogout = 'assets/svgs/logout.svg';
-  static const String svgsMale = 'assets/svgs/male.svg';
+  static const String svgsMale = 'assets/svgs/male.png';
   static const String svgsMap = 'assets/svgs/map.svg';
   static const String svgsProfile = 'assets/svgs/profile.svg';
   static const String svgsSet = 'assets/svgs/set.svg';

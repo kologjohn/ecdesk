@@ -31,8 +31,10 @@ class FirebaseAccounts extends ChangeNotifier{
   String error="";
   bool desktopshow=true;
   bool idshow=false;
-
-
+ bool isLetter(String ch) {
+   return (ch.codeUnitAt(0) >= 65 && ch.codeUnitAt(0) <= 90) || // A-Z
+       (ch.codeUnitAt(0) >= 97 && ch.codeUnitAt(0) <= 122);  // a-z
+ }
    seearchifo(String startseach){
     if(startseach.length>0)
       {
