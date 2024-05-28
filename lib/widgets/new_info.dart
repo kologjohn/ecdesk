@@ -60,51 +60,103 @@ class _DetailsInfoState extends State<DetailsInfo> {
       region=fbaccount.region_access;
 
       return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.black,
+          toolbarHeight: 100,
+          title: Row(
+            children: [
+              Expanded(
+                  child: Container(
+                    child: Column(
+                      children: [
+                        Wrap(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                "$region VOTER'S PHOTO ALBUM",
+                                style: Global.normalsize,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 400,
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 8.0, top: 8.0, bottom: 8.0),
+                                child: TextField(
+                                  style: const TextStyle(color: Colors.white),
+                                  decoration: InputDecoration(
+                                      prefixIcon: const Icon(Icons.search),
+                                      prefixIconColor: Colors.white54,
+                                      hintText: "Search...",
+                                      hintStyle: const TextStyle(color: Colors.white54),
+                                      focusedBorder: const OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: Colors.white,
+                                          )
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.grey.shade600
+                                          )
+                                      )
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  )
+              )
+            ],
+          ),
+        ),
         body: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 8),
-              child: Container(
-                color: Colors.green[900],
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text(
-                        "$region VOTER'S PHOTO ALBUM",
-                        style: Global.normalsize,
-                      ),
-                    ),
-                    // SizedBox(
-                    //   width: 400,
-                    //   child: Padding(
-                    //     padding: const EdgeInsets.only(right: 8.0, top: 8.0, bottom: 8.0),
-                    //     child: TextField(
-                    //       style: const TextStyle(color: Colors.white),
-                    //       decoration: InputDecoration(
-                    //           prefixIcon: const Icon(Icons.search),
-                    //           prefixIconColor: Colors.white54,
-                    //           hintText: "Search...",
-                    //           hintStyle: const TextStyle(color: Colors.white54),
-                    //           focusedBorder: const OutlineInputBorder(
-                    //               borderSide: BorderSide(
-                    //                 color: Colors.white,
-                    //               )
-                    //           ),
-                    //           enabledBorder: OutlineInputBorder(
-                    //               borderSide: BorderSide(
-                    //                   color: Colors.grey.shade600
-                    //               )
-                    //           )
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
-                  ],
-                ),
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 8),
+            //   child: Container(
+            //     color: Colors.green[900],
+            //     child: Row(
+            //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //       children: [
+            //         Padding(
+            //           padding: EdgeInsets.all(8.0),
+            //           child: Text(
+            //             "$region VOTER'S PHOTO ALBUM",
+            //             style: Global.normalsize,
+            //           ),
+            //         ),
+            //         SizedBox(
+            //           width: 400,
+            //           child: Padding(
+            //             padding: const EdgeInsets.only(right: 8.0, top: 8.0, bottom: 8.0),
+            //             child: TextField(
+            //               style: const TextStyle(color: Colors.white),
+            //               decoration: InputDecoration(
+            //                   prefixIcon: const Icon(Icons.search),
+            //                   prefixIconColor: Colors.white54,
+            //                   hintText: "Search...",
+            //                   hintStyle: const TextStyle(color: Colors.white54),
+            //                   focusedBorder: const OutlineInputBorder(
+            //                       borderSide: BorderSide(
+            //                         color: Colors.white,
+            //                       )
+            //                   ),
+            //                   enabledBorder: OutlineInputBorder(
+            //                       borderSide: BorderSide(
+            //                           color: Colors.grey.shade600
+            //                       )
+            //                   )
+            //               ),
+            //             ),
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // ),
             StreamBuilder<QuerySnapshot>(
                 stream: fbaccount.db.collection("ec_data").where('pscode',isEqualTo: "R081501B").limit(500).snapshots(),
                 builder: (context, AsyncSnapshot<QuerySnapshot>snapshot) {
