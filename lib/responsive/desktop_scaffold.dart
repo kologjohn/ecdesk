@@ -352,6 +352,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                       FutureBuilder<RegionalSummaryResponse>(
                                                         future: value.fetchRegionalSummary(),
                                                         builder: (context, snapshot) {
+                                                          String title="REGIONAL SUMMARY";
 
                                                           if (snapshot.connectionState == ConnectionState.waiting) {
                                                             return const Center(child: CircularProgressIndicator());
@@ -387,6 +388,11 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                                 InkWell(
                                                                   onTap: (){
                                                                     print(regionnames);
+                                                                    setState(() {
+                                                                      title="$regionnames";
+                                                                      Navigator.pushNamed(context, Routes.survey);
+
+                                                                    });
                                                                   },
                                                                     child: totalvoter(mycolors: colors[i], regionalcode: code, numformat1: numformat1, totals: total, totalper: "$per", regionName: regionnames,)),
                                                               );
@@ -404,7 +410,7 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                                                                 child: Column(
                                                                   mainAxisAlignment: MainAxisAlignment.end,
                                                                   children: [
-                                                                    const Text("Regional Summary", style: TextStyle(color: Colors.black,fontSize: 16,fontWeight: FontWeight.w100),),
+                                                                    Text(title, style: TextStyle(color: Colors.black,fontSize: 16,fontWeight: FontWeight.w100),),
                                                                     const Padding(
                                                                       padding: EdgeInsets.all(8.0),
                                                                       child: Divider(thickness: 1,color: Colors.black12,),
