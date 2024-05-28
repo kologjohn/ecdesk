@@ -55,6 +55,9 @@ class _DetailsInfoState extends State<DetailsInfo> {
     double itemWidth = 280.0;
     // Calculate the crossAxisCount dynamically
     int crossAxisCount = (screenWidth / itemWidth).floor();
+    if(crossAxisCount<=1){
+      crossAxisCount=1;
+    }
     return Consumer<FirebaseAccounts>(builder: (BuildContext context, FirebaseAccounts fbaccount, Widget? child) {
       //fbaccount.getSessionAccess();
       region=fbaccount.region_access;
@@ -202,7 +205,7 @@ class _DetailsInfoState extends State<DetailsInfo> {
                   }
                   return Expanded(
                     child: GridView.builder(
-                      //itemCount: itemcount,
+                      itemCount: itemcount,
                       gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: (crossAxisCount).ceil()),
                       itemBuilder: (context, index)
                       {

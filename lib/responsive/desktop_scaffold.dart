@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ndcdata/forms/login_form.dart';
 import 'package:ndcdata/idcard.dart';
 import 'package:ndcdata/route/routes.dart';
@@ -33,8 +34,6 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
   Barcode? result;
   QRViewController? controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-
-
   final numformat = NumberFormat("#,##0.00", "en_US");
   final numformat1 = NumberFormat("#,##0", "en_US");
   List <String> regionlist=[];
@@ -57,10 +56,8 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
 
   String? _selectedRegion;
   List<String> _regions = ['Upper East', 'Upper West', 'North East', 'Ahafo', 'Bono', 'Northern', 'Oti'];
-
   bool isSidebarExpanded = false;
-
-
+  String fieldsearch="voterid";
   void toggleSidebar() {
     setState(() {
       isSidebarExpanded = !isSidebarExpanded;
@@ -90,6 +87,13 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
           scw = screenWidth*0.47;
         }
 
+        // Define the item width
+        double itemWidth = 400.0;
+        // Calculate the crossAxisCount dynamically
+        int crossAxisCount = (screenWidth / itemWidth).floor();
+        if(crossAxisCount<=1){
+          crossAxisCount=1;
+        }
 
         return Scaffold(
             backgroundColor: Colors.white,
@@ -188,18 +192,25 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
 
                                             children: [
                                               Padding(
-                                                padding: EdgeInsets.only(left: 8.0),
+                                                padding: const EdgeInsets.only(left: 8.0),
                                                 child: Center(
                                                   child: FittedBox(
                                                     child: Container(
                                                       width: scw*0.9,
                                                       child:  TextField(
-
                                                         style: TextStyle(color:Colors.white),
                                                         controller: searchcontroller,
                                                         onChanged: (text){
                                                           value.desktoshow(text);
                                                           value.seearchifo(text);
+                                                          if(text.length>5 && text.length<10)
+                                                            {
+                                                              fieldsearch="pscode";
+                                                            }
+                                                          else if(text.length==10)
+                                                            {
+                                                              fieldsearch="voterid";
+                                                            }
                                                         },
                                                         decoration: InputDecoration(
                                                           suffixIcon: InkWell(
@@ -1552,85 +1563,46 @@ class _DesktopScaffoldState extends State<DesktopScaffold> {
                             ),
                             Visibility(
                               visible: value.idshow,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                        child: FutureBuilder<SearchSummaryResponse>(
-                                          future: value.fetchSearch(searchcontroller.text),
-                                          builder: (BuildContext context, AsyncSnapshot<SearchSummaryResponse> snapshot) {
-                                            if(snapshot.hasData){
-                                              int datalength=snapshot.data!.searchSummary.length;
-                                              print(datalength);
-                                              names.clear();
-                                              for (int i=0; i<datalength; i++){
-                                                final summary = snapshot.data!.searchSummary[i];
-                                                String _name=summary.name;
-                                                String _voterid=summary.voterid;
-                                                String _sex=summary.sex;
-                                                String _pscode=summary.pscode;
-                                                String _image=summary.image;
-                                                String _region=summary.region;
-                                                String _constituency=summary.constituency;
-                                                String _psname=summary.psname;
-                                                int _age=summary.age;
-                                                print(summary.image);
-                                                names.add(Contents(name: summary.name, age: _age, voterid: _voterid, pscode: _pscode, sex: _sex, image: _image, constituency: _constituency, region: _region, psname: _psname,));
-                                              }
-                                              if (names.length ==0)
-                                              {
-                                                names.add(Container(
-                                                  child: const Column(
-                                                    mainAxisAlignment: MainAxisAlignment.center,
-                                                    children: <Widget>[
-                                                      Icon(
-                                                        Icons.error_outline,
-                                                        color: Colors.red,
-                                                        size: 100,
-                                                      ),
-                                                      SizedBox(height: 16),
-                                                      Text(
-                                                        '404 - Search Not Found',
-                                                        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                                                      ),
-                                                      SizedBox(height: 16),
-                                                      Text(
-                                                        'Your search does not exist.',
-                                                        textAlign: TextAlign.center,
-                                                        style: TextStyle(fontSize: 16),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ));
-                                              }
-                                            }
-                                            else if(snapshot.hasError){
-                                              print(snapshot.error);
-                                            }
-                                            else if(snapshot.hasError){
-                                              print(snapshot.error);
-                                            }
-                                            else
-                                            {
-                                              print("No Data");
-                                            }
-                                            return  Container(
-                                              child: Column(
-                                                children: [
-                                                  Wrap(
-                                                      spacing: 5,
-                                                      runSpacing: 5,
-                                                      children: names
-                                                  )
-                                                ],
-                                              ),
-                                            );
+                              child: Container(
+                                child: StreamBuilder<QuerySnapshot>(
+                                  stream: value.db.collection("ec_data").where(fieldsearch, isEqualTo:searchcontroller.text).snapshots(),
+                                  builder: (context, snapshot) {
+                                    if(!snapshot.hasData)
+                                      {
+                                        print("No Data");
+                                        return const Text("No Data");
+                                      }
+                                    else
+                                      {
+                                        print(snapshot.data!.docs.length);
+                                      }
+                                    return Container(
+                                      height: double.maxFinite,
+                                      child: GridView.builder(
+                                        itemCount: snapshot.data!.docs.length,
+                                        gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+                                          crossAxisCount: crossAxisCount,
+                                          childAspectRatio: 2,
+                                          mainAxisSpacing: 2,
+                                          crossAxisSpacing: 2
 
-                                          },
-                                        )
-                                    )
-                                  ],
+                                        ),
+                                      itemBuilder: (BuildContext context, int index) {
+                                        final  summary = snapshot.data!.docs[index];
+                                        String _name=summary['name'];
+                                        String _voterid=summary['voterid'];
+                                        String _sex=summary['sex'];
+                                        String _pscode=summary['pscode'];
+                                        String _image=summary['image'];
+                                        String _region=summary['region'];
+                                        String _constituency=summary['constituency'];
+                                        String _psname=summary['psname'];
+                                        int _age=summary['age'];
+                                        return Contents(name: _name, age: _age, voterid: _voterid, pscode: _pscode, sex: _sex, image: _image, constituency: _constituency, region: _region, psname: _psname);
+                                      },
+                                                                       ),
+                                    );
+                                  }
                                 ),
                               ),
                             )
