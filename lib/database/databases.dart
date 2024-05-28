@@ -9,9 +9,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_session_manager/flutter_session_manager.dart';
 import 'package:http/http.dart' as http;
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirebaseAccounts extends ChangeNotifier{
- //static final db=Firestore.instance;
+ final db=FirebaseFirestore.instance;
   final auth=FirebaseAuth.instance;
   int numofregions=0;
   List<String> namelist=[];
